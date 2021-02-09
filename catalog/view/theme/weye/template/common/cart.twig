@@ -1,5 +1,14 @@
 <div id="cart" class="btn-group btn-block">
-  <button type="button" data-toggle="dropdown" data-loading-text="{{ text_loading }}" class="btn btn-inverse btn-block btn-lg dropdown-toggle"><i class="fa fa-shopping-cart"></i> <span id="cart-total">{{ text_items }}</span></button>
+
+  <button type="button" data-toggle="dropdown" data-loading-text="{{ text_loading }}" class="btn btn-default dropdown-toggle">
+    <div class="d-flex justify-content-around">
+      <div><i class="fal fa-shopping-cart fa-3x text-white"></i></div>
+      <div class="text-left text-white">
+        {{ text_items }}
+      </div>
+    </div>
+  </button>
+
   <ul class="dropdown-menu pull-right">
     {% if products or vouchers %}
     <li>

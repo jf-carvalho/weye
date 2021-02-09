@@ -1,4 +1,24 @@
 header {
   background: #3f0a73; }
 
+.text-lightpurple {
+  color: #ee05f2 !important; }
+
+#search {
+  position: relative; }
+  #search > button {
+    position: absolute;
+    right: 0;
+    font-size: 1.25em;
+    height: 100%;
+    color: #f397f5;
+    z-index: 9; }
+  #search input[name=search] {
+    border-radius: 30px; }
+    #search input[name=search]::placeholder {
+      color: #bbb !important; }
+
+#cart > button.dropdown-toggle:after {
+  content: unset !important; }
+
 /*# sourceMappingURL=stylesheet.css.map */

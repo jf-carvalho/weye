@@ -1,3 +1,41 @@
+$purple_header: #3f0a73;
+$lightpurple: #ee05f2;
+
 header{
-	background: #3f0a73;
+	background: $purple_header;
+}
+
+// COMMON CLASSES
+.text-lightpurple{
+	color: $lightpurple !important;
+}
+
+// SEARCH
+#search{
+	position: relative;
+
+	>button{
+		position: absolute;
+		right: 0;
+		font-size: 1.25em;
+		height: 100%;
+		color: #f397f5;
+		z-index: 9;
+	}
+
+	input[name=search]{
+		border-radius: 30px;
+		&::placeholder{
+			color: #bbb !important;
+		}
+	}
+}
+
+//CART
+#cart{
+	>button.dropdown-toggle{
+		&:after{
+			content: unset !important;
+		}
+	}
 }

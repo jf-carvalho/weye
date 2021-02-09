@@ -55,16 +55,26 @@
             {% endif %}</div>
         </div>
         <div class="col-4">{{ search }}</div>
-        <div class="col-2">
-          {% if logged %}
-            <a href="">Minha conta</a>
-          {% else %}
-            <a href="{{ login }}">{{ text_login }}</a>
-            ou
-            <a href="{{ register }}">{{ text_register }}</a>
-          {% endif %}
+        <div class="col-3 d-flex justify-content-center">
+          <div class="row align-items-center">
+            <div class="col-3 d-flex alig-items-center flex-column justify-content-center">
+              <i class="fas fa-user-circle text-white fa-2x"></i>
+            </div>
+            <div class="col-9 d-flex alig-items-center flex-column justify-content-center text-white small">
+              <div>Meu perfil</div>
+              <div>
+                {% if logged %}
+                  <a href="" class="text-white">Minha conta</a>
+                {% else %}
+                  <a href="{{ login }}" class="text-white">{{ text_login }}</a>
+                  ou
+                  <a href="{{ register }}" class="text-lightpurple">{{ text_register }}</a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="col-3">{{ cart }}</div>
+        <div class="col-2 d-flex justify-content-end">{{ cart }}</div>
       </div>
     </div>
   </header>
