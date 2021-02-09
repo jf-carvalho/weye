@@ -6,9 +6,9 @@ class ControllerExtensionModuleSlideshow extends Controller {
 		$this->load->model('design/banner');
 		$this->load->model('tool/image');
 
-		$this->document->addStyle('catalog/view/javascript/jquery/swiper/css/swiper.min.css');
-		$this->document->addStyle('catalog/view/javascript/jquery/swiper/css/opencart.css');
-		$this->document->addScript('catalog/view/javascript/jquery/swiper/js/swiper.jquery.js');
+		// $this->document->addStyle('catalog/view/javascript/jquery/swiper/css/swiper.min.css');
+		// $this->document->addStyle('catalog/view/javascript/jquery/swiper/css/opencart.css');
+		// $this->document->addScript('catalog/view/javascript/jquery/swiper/js/swiper.jquery.js');
 		
 		$data['banners'] = array();
 
@@ -25,6 +25,7 @@ class ControllerExtensionModuleSlideshow extends Controller {
 		}
 
 		$data['module'] = $module++;
+		$data['module_name'] = strtolower(preg_replace('~-+~', '-', trim(preg_replace('~[^-\w]+~', '', iconv('utf-8', 'us-ascii//TRANSLIT', preg_replace('~[^\pL\d]+~u', '-', $setting['name']))), '-')));
 
 		return $this->load->view('extension/module/slideshow', $data);
 	}
