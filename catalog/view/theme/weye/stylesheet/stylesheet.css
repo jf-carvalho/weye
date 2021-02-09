@@ -20,5 +20,39 @@ header {
 
 #cart > button.dropdown-toggle:after {
   content: unset !important; }
+#cart > .dropdown-menu {
+  position: fixed !important;
+  transform: unset !important;
+  right: unser;
+  top: 0;
+  height: 100vh;
+  width: 400px;
+  max-width: 90vw;
+  margin-left: 0 !important;
+  margin: 0;
+  left: -100%;
+  border: none;
+  border-radius: 0;
+  transition: left .75s;
+  display: block !important;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.85);
+  overflow-y: auto; }
+  #cart > .dropdown-menu.show {
+    left: 0; }
+#cart a, #cart span {
+  color: #fff !important;
+  text-decoration: none !important; }
+#cart .btn_remove {
+  background: none;
+  border: none;
+  cursor: pointer; }
+  #cart .btn_remove i {
+    color: #dc3545;
+    font-size: 18px; }
+#cart table, #cart table tr, #cart table td {
+  border: none; }
+#cart table tr:not(:last-of-type) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
 
 /*# sourceMappingURL=stylesheet.css.map */
