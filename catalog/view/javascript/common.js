@@ -23,6 +23,26 @@ function getURLVar(key) {
 }
 
 $(document).ready(function() {
+
+	$('.nav-item').on('mouseenter', function(){
+		$(this).find('>a').css('color', '#3f0a73')
+	})
+
+	$('.nav-item').on('mouseleave', function(e){
+		$(this).find('>a').css('color', '#000')
+	})
+
+
+	$('.dropdown-menu').on('mouseenter', function(){
+      $(this).parent().find('>a').css('color', '#3f0a73')
+    })
+
+    $('.dropdown-menu').on('mouseleave', function(e){
+    	if( $(this).parent().find('>a:hover').length === 0){
+    		$(this).parent().find('>a').css('color', '#000')		
+    	}
+    })
+
 	// Highlight any found errors
 	$('.text-danger').each(function() {
 		var element = $(this).parent().parent();

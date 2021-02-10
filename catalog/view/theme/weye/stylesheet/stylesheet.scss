@@ -95,6 +95,8 @@ header{
 	.nav-link{
 		color: #000;
 		text-transform: uppercase;
+		font-weight: 900;
+
 		&.dropdown-toggle{
 			&:after{
 				content: unset !important;
@@ -108,6 +110,12 @@ header{
 			border: none;
 			border-radius: 0;
 			margin: 0;
+		}
+	}
+
+	.dropdown, .dropdown-toggle{
+		&:hover{
+			// color: $purple_header;
 		}
 	}
 }

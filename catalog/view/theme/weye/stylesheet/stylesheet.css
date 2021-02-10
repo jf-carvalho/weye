@@ -60,7 +60,8 @@ header {
 
 #menu .nav-link {
   color: #000;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  font-weight: 900; }
   #menu .nav-link.dropdown-toggle:after {
     content: unset !important; }
 #menu .nav-item .dropdown-menu {
