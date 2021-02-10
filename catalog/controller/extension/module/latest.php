@@ -56,7 +56,7 @@ class ControllerExtensionModuleLatest extends Controller {
 				);
 			}
 
-			return $this->load->view('extension/module/latest', $data);
+			return $this->load->view('product/products_list', $data);
 		}
 	}
 }

@@ -180,6 +180,20 @@ header{
 
 // PRODUCTS LIST
 .products_list{
+	.list_title{
+		position: relative;
+
+		&:after{
+			content: '';
+			position: absolute;
+			bottom: -1rem;
+			left: calc(50% - 50px);
+			width: 100px;
+			height: 3px;
+			background-color: $purple_header;
+		}
+	}
+
 	.product_unit{
 		position: relative;
 		border: 1px solid transparent;

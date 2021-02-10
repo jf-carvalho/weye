@@ -108,6 +108,16 @@ header {
     #info-cards #presenteie * {
       color: #fff; }
 
+.products_list .list_title {
+  position: relative; }
+  .products_list .list_title:after {
+    content: '';
+    position: absolute;
+    bottom: -1rem;
+    left: calc(50% - 50px);
+    width: 100px;
+    height: 3px;
+    background-color: #3f0a73; }
 .products_list .product_unit {
   position: relative;
   border: 1px solid transparent; }
