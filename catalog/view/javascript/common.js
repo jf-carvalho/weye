@@ -181,10 +181,17 @@ var cart = {
 
 					// Need to set timeout otherwise it wont update the total
 					setTimeout(function () {
-						$('#cart > button').html('<span id="cart-total"><i class="fa fa-shopping-cart"></i> ' + json['total'] + '</span>');
+						$('#cart > button').html(`
+							<div class="d-flex justify-content-around">
+							  <div><i class="fal fa-shopping-cart fa-3x text-white"></i></div>
+							  <div class="text-left text-white">
+							    <div>${itens} itens</div><div>${total}</div>
+							  </div>
+							</div>
+							`);
 					}, 100);
 
-					$('html, body').animate({ scrollTop: 0 }, 'slow');
+					// $('html, body').animate({ scrollTop: 0 }, 'slow');
 
 					$('#cart > ul').load('index.php?route=common/cart/info ul li');
 				}
@@ -209,7 +216,14 @@ var cart = {
 			success: function(json) {
 				// Need to set timeout otherwise it wont update the total
 				setTimeout(function () {
-					$('#cart > button').html('<span id="cart-total"><i class="fa fa-shopping-cart"></i> ' + json['total'] + '</span>');
+					$('#cart > button').html(`
+						<div class="d-flex justify-content-around">
+						  <div><i class="fal fa-shopping-cart fa-3x text-white"></i></div>
+						  <div class="text-left text-white">
+						    <div>${itens} itens</div><div>${total}</div>
+						  </div>
+						</div>
+						`);
 				}, 100);
 
 				if (getURLVar('route') == 'checkout/cart' || getURLVar('route') == 'checkout/checkout') {
@@ -224,6 +238,7 @@ var cart = {
 		});
 	},
 	'remove': function(key) {
+		event.stopPropagation();
 		$.ajax({
 			url: 'index.php?route=checkout/cart/remove',
 			type: 'post',
@@ -238,7 +253,16 @@ var cart = {
 			success: function(json) {
 				// Need to set timeout otherwise it wont update the total
 				setTimeout(function () {
-					$('#cart > button').html('<span id="cart-total"><i class="fa fa-shopping-cart"></i> ' + json['total'] + '</span>');
+					var itens = json['total'].split(' - ')[0]
+					var total = json['total'].split(' - ')[1]
+					$('#cart > button').html(`
+						<div class="d-flex justify-content-around">
+						  <div><i class="fal fa-shopping-cart fa-3x text-white"></i></div>
+						  <div class="text-left text-white">
+						    <div>${itens} itens</div><div>${total}</div>
+						  </div>
+						</div>
+						`);
 				}, 100);
 
 				if (getURLVar('route') == 'checkout/cart' || getURLVar('route') == 'checkout/checkout') {
@@ -310,7 +334,7 @@ var wishlist = {
 				$('#wishlist-total span').html(json['total']);
 				$('#wishlist-total').attr('title', json['total']);
 
-				$('html, body').animate({ scrollTop: 0 }, 'slow');
+				// $('html, body').animate({ scrollTop: 0 }, 'slow');
 			},
 			error: function(xhr, ajaxOptions, thrownError) {
 				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -337,7 +361,7 @@ var compare = {
 
 					$('#compare-total').html(json['total']);
 
-					$('html, body').animate({ scrollTop: 0 }, 'slow');
+					// $('html, body').animate({ scrollTop: 0 }, 'slow');
 				}
 			},
 			error: function(xhr, ajaxOptions, thrownError) {

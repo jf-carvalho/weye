@@ -41,6 +41,20 @@ header{
 	color: #ddd !important;
 }
 
+.alert-success{
+	position: fixed !important;
+	bottom: 1rem;
+	right: 1rem;
+	z-index: 9;
+	max-width: 300px;
+	background-color: rgba(36, 188, 122, .85) !important;
+	color: #fff !important;
+	border: none !important;
+	*{
+		color: #fff !important;
+	}
+}
+
 // SEARCH
 #search{
 	position: relative;
