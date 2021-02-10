@@ -1,6 +1,10 @@
 $purple_header: #3f0a73;
 $lightpurple: #ee05f2;
 
+body{
+	overflow-x: hidden;
+}
+
 header{
 	background: $purple_header;
 }
@@ -87,3 +91,9 @@ header{
 }
 
 //MENU
+#menu{
+	.nav-link{
+		color: #000;
+		text-transform: uppercase;
+	}
+}
