@@ -83,4 +83,26 @@ header {
   border-radius: 0;
   margin: 0; }
 
+#info-cards {
+  margin: 1rem auto; }
+  #info-cards .info-card {
+    width: 80%;
+    padding: .75rem 1rem;
+    border-radius: 14px;
+    font-size: 14px;
+    transform: scale(0.95);
+    transition: transform .25s; }
+    #info-cards .info-card:hover {
+      transform: scale(1); }
+  #info-cards #frete {
+    background-color: #ccc; }
+  #info-cards #retirar {
+    background-color: #7e118c; }
+    #info-cards #retirar * {
+      color: #fff; }
+  #info-cards #presenteie {
+    background-color: #3f0a73; }
+    #info-cards #presenteie * {
+      color: #fff; }
+
 /*# sourceMappingURL=stylesheet.css.map */
