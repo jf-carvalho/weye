@@ -61,5 +61,12 @@ header {
 #menu .nav-link {
   color: #000;
   text-transform: uppercase; }
+  #menu .nav-link.dropdown-toggle:after {
+    content: unset !important; }
+#menu .nav-item .dropdown-menu {
+  left: unset;
+  border: none;
+  border-radius: 0;
+  margin: 0; }
 
 /*# sourceMappingURL=stylesheet.css.map */
