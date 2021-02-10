@@ -1,8 +1,31 @@
+@font-face{
+	src: url('./fonts/GothamNarrow-Book.otf');
+	font-family: 'Gotham Narrow Book';
+}
+
+@font-face{
+	src: url('./fonts/GothamNarrow-Medium.otf');
+	font-family: 'Gotham Narrow Medium';
+}
+
+@font-face{
+	src: url('./fonts/GothamXNarrow-Thin.otf');
+	font-family: 'Gotham Narrow Thin';
+}
+
+$book: 'Gotham Narrow Book';
+$medium: 'Gotham Narrow Medium';
+$thin: 'Gotham Narrow Thin';
+
 $purple_header: #3f0a73;
 $lightpurple: #ee05f2;
 
 body{
 	overflow-x: hidden;
+}
+
+*{
+	font-family: $book;
 }
 
 header{
@@ -95,7 +118,8 @@ header{
 	.nav-link{
 		color: #000;
 		text-transform: uppercase;
-		font-weight: 900;
+		font-family: $book;
+		font-weight: 600;
 
 		&.dropdown-toggle{
 			&:after{
@@ -110,12 +134,6 @@ header{
 			border: none;
 			border-radius: 0;
 			margin: 0;
-		}
-	}
-
-	.dropdown, .dropdown-toggle{
-		&:hover{
-			// color: $purple_header;
 		}
 	}
 }
