@@ -19,6 +19,9 @@ header {
 .text-lightpurple {
   color: #ee05f2 !important; }
 
+.text-lightgray {
+  color: #ddd !important; }
+
 #search {
   position: relative; }
   #search > button {
@@ -104,5 +107,60 @@ header {
     background-color: #3f0a73; }
     #info-cards #presenteie * {
       color: #fff; }
+
+.products_list .product_unit {
+  position: relative;
+  border: 1px solid transparent; }
+  .products_list .product_unit:hover {
+    border-color: #ddd; }
+    .products_list .product_unit:hover .btn-add {
+      visibility: visible;
+      opacity: 1; }
+.products_list .btn-wishlist {
+  background: none;
+  border: none; }
+  .products_list .btn-wishlist i {
+    color: #ee05f2; }
+.products_list .product_name {
+  color: #262626;
+  transition: color .25s;
+  text-decoration: none !important; }
+  .products_list .product_name:hover {
+    color: #090909; }
+.products_list .price-old {
+  text-decoration: line-through; }
+.products_list .product_name {
+  height: 48px;
+  overflow: hidden; }
+.products_list .price_wrapper {
+  height: 48px;
+  overflow: hidden; }
+.products_list .btn-add-wrapper {
+  position: absolute;
+  left: 0;
+  right: 0; }
+  .products_list .btn-add-wrapper .btn-add {
+    width: 100%;
+    background-color: #25c153;
+    border: none;
+    color: #fff;
+    padding: 8px 16px;
+    text-transform: uppercase;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .25s; }
+.products_list .tag_special {
+  position: absolute;
+  background-color: #ee05f2;
+  color: #fff;
+  right: 1rem;
+  top: 1rem;
+  padding: .25rem;
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: 900;
+  font-family: 'Gotham Narrow Medium';
+  border-radius: 4px;
+  border-top-right-radius: 14px; }
 
 /*# sourceMappingURL=stylesheet.css.map */
