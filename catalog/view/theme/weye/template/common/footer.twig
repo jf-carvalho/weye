@@ -2,35 +2,59 @@
   <div class="container">
     <div class="row">
       {% if informations %}
-      <div class="col-sm-3">
-        <h5 class="mb-3">{{ text_information }}</h5>
-        <ul class="list-unstyled">
-         {% for information in informations %}
-          <li class="mb-1"><a class="text-dark" href="{{ information.href }}">{{ information.title }}</a></li>
-          {% endfor %}
-        </ul>
+      <div class="col-sm-3 d-flex justify-content-center">
+       <div>
+         <h6 class="mb-4 font-weight-bold text-left">{{ text_information }}</h6>
+         <ul class="list-unstyled">
+          {% for information in informations %}
+           <li class="mb-1"><a class="text-dark" href="{{ information.href }}">{{ information.title }}</a></li>
+           {% endfor %}
+         </ul>
+       </div>
       </div>
       {% endif %}
-      <div class="col-sm-3">
-        <h5 class="mb-3">{{ text_extra }}</h5>
-        <ul class="list-unstyled">
-          <li class="mb-1"><a class="text-dark" href="{{ voucher }}">{{ text_voucher }}</a></li>
-          <li class="mb-1"><a class="text-dark" href="{{ special }}">{{ text_special }}</a></li>
-          <li class="mb-1"><a class="text-dark" href="{{ affiliate }}">{{ text_affiliate }}</a></li>
-          <li class="mb-1"><a class="text-dark" href="{{ return }}">{{ text_return }}</a></li>
-        </ul>
+      <div class="col-sm-3 d-flex justify-content-center">
+       <div>
+         <h6 class="mb-4 font-weight-bold">{{ text_extra }}</h6>
+         <ul class="list-unstyled">
+           <li class="mb-1"><a class="text-dark" href="{{ voucher }}">{{ text_voucher }}</a></li>
+           <li class="mb-1"><a class="text-dark" href="{{ special }}">{{ text_special }}</a></li>
+           <li class="mb-1"><a class="text-dark" href="{{ affiliate }}">{{ text_affiliate }}</a></li>
+           <li class="mb-1"><a class="text-dark" href="{{ return }}">{{ text_return }}</a></li>
+         </ul>
+       </div>
       </div>
-      <div class="col-sm-3">
-        <h5 class="mb-3">Central de atendimento</h5>
-        <ul class="list-unstyled">
-          <li class="mb-1"></li>      
-        </ul>
+      <div class="col-sm-3 d-flex">
+        <div>
+          <h6 class="mb-4 font-weight-bold">Central de atendimento</h6>
+          <ul class="list-unstyled">
+            <li><a data-tel="true" data-telnumber="{{ telefone }}" class="text-dark">{{ telefone }}</a></li>      
+            <li class="mb-3"><a href="mailto:{{ email }}" class="text-dark">{{ email }}</a></li>      
+            <li class="mb-1 text-dark">{{ funcionamento }}</li>      
+          </ul>
+        </div>
       </div>
-      <div class="col-sm-3">
-        <h5 class="mb-3">Siga-nos</h5>
-        <ul class="list-unstyled">
-          <li class="mb-1"></li>
-        </ul>
+      <div class="col-sm-3 d-flex justify-content-center">
+        <div>
+          <h6 class="mb-4 font-weight-bold">Siga-nos</h6>
+          <ul class="list-unstyled d-flex">
+            <li class="mb-1">
+              <a href="{{ instagram }}" target="_blank" class="pr-3">
+                <i class="fab fa-instagram fa-2x social_media"></i>
+              </a>
+            </li>
+            <li class="mb-1">
+              <a href="{{ facebook }}" target="_blank" class="pr-3">
+                <i class="fab fa-facebook-f fa-2x social_media"></i>
+              </a>
+            </li>
+            <li class="mb-1">
+              <a href="{{ youtube }}" target="_blank" class="pr-3">
+                <i class="fab fa-youtube fa-2x social_media"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
     <hr>
@@ -56,7 +80,9 @@ Please donate via PayPal to donate@opencart.com
   
   <script src="catalog/view/javascript/common.js"></script>
 
-
+  <script type="text/javascript">
+    document.querySelector('a[data-tel="true"]').href = 'tel:'+ document.querySelector('a[data-tel="true"]').getAttribute('data-telnumber').replace(/[^0-9\\.]+/g, '')
+  </script>
 
 </body>
 </html>
