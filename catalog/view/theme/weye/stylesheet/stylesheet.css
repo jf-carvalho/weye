@@ -187,5 +187,8 @@ header {
 
 footer .social_media {
   color: #ee05f2; }
+footer #disclaimer {
+  background-color: #e6e6e6;
+  color: #6c6c6c; }
 
 /*# sourceMappingURL=stylesheet.css.map */
