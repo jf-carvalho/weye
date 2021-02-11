@@ -1,11 +1,11 @@
 <?php
 // Heading
-$_['heading_title']    = 'Carrossel de imagens';
+$_['heading_title']    = 'Banners fixos';
 
 // Text
 $_['text_extension']   = 'Extensões';
-$_['text_success']     = 'Carrossel de imagens modificado com sucesso!';
-$_['text_edit']        = 'Editando Carrossel de imagens';
+$_['text_success']     = 'Banners fixos modificado com sucesso!';
+$_['text_edit']        = 'Editando Banners fixos';
 
 // Entry
 $_['entry_name']       = 'Título do módulo';
