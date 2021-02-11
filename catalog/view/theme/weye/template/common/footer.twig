@@ -3,9 +3,9 @@
     <div class="container">
       <div class="row">
         {% if informations %}
-        <div class="col-sm-3 d-flex justify-content-center">
-         <div>
-           <h6 class="mb-4 font-weight-bold text-left">{{ text_information }}</h6>
+        <div class="col-sm-3 d-flex justify-content-center mb-3 mb-lg-0">
+         <div class="text-center text-lg-left">
+           <h6 class="mb-4 font-weight-bold">{{ text_information }}</h6>
            <ul class="list-unstyled">
             {% for information in informations %}
              <li class="mb-1"><a class="text-dark" href="{{ information.href }}">{{ information.title }}</a></li>
@@ -14,8 +14,8 @@
          </div>
         </div>
         {% endif %}
-        <div class="col-sm-3 d-flex justify-content-center">
-         <div>
+        <div class="col-sm-3 d-flex justify-content-center mb-3 mb-lg-0">
+         <div class="text-center text-lg-left">
            <h6 class="mb-4 font-weight-bold">{{ text_extra }}</h6>
            <ul class="list-unstyled">
              <li class="mb-1"><a class="text-dark" href="{{ voucher }}">{{ text_voucher }}</a></li>
@@ -25,8 +25,8 @@
            </ul>
          </div>
         </div>
-        <div class="col-sm-3 d-flex">
-          <div>
+        <div class="col-sm-3 d-flex justify-content-center mb-3 mb-lg-0">
+          <div class="text-center text-lg-left">
             <h6 class="mb-4 font-weight-bold">Central de atendimento</h6>
             <ul class="list-unstyled">
               <li><a data-tel="true" data-telnumber="{{ telefone }}" class="text-dark">{{ telefone }}</a></li>      
@@ -35,8 +35,8 @@
             </ul>
           </div>
         </div>
-        <div class="col-sm-3 d-flex justify-content-center">
-          <div>
+        <div class="col-sm-3 d-flex justify-content-center mb-3 mb-lg-0">
+          <div class="text-center text-lg-left">
             <h6 class="mb-4 font-weight-bold">Siga-nos</h6>
             <ul class="list-unstyled d-flex">
               <li class="mb-1">
@@ -62,13 +62,13 @@
 
     <div class="container my-5">
       <div class="row align-items-center">
-        <div class="col-4 d-flex justify-content-center">
+        <div class="col-12 col-lg-4 mb-3 mb-lg-0 d-flex justify-content-center">
           <img src="/" onerror="this.src = document.getElementsByTagName('base')[0].href + 'image/catalog/rodape/bandeiras.png'" class="img-fluid">
         </div>
-        <div class="col-4 d-flex justify-content-center">
+        <div class="col-12 col-lg-4 mb-3 mb-lg-0 d-flex justify-content-center">
           <img src="/" onerror="this.src = document.getElementsByTagName('base')[0].href + 'image/catalog/rodape/seguranca.png'" class="img-fluid">
         </div>
-        <div class="col-4 d-flex justify-content-center align-items-center">
+        <div class="col-12 col-lg-4 mb-3 mb-lg-0 d-flex justify-content-center align-items-center">
             <div class="small mr-3 mt-2">
               DESENVOLVIDO POR: 
             </div>

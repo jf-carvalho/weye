@@ -34,6 +34,15 @@ header {
   .alert-success * {
     color: #fff !important; }
 
+#carousel-carrossel-home-mobile {
+  display: none; }
+
+@media (max-width: 768px) {
+  #carousel-carrossel-home-mobile {
+    display: block; }
+
+  .carousel:not(#carousel-carrossel-home-mobile) {
+    display: none; } }
 #search {
   position: relative; }
   #search > button {
@@ -98,6 +107,27 @@ header {
   border-radius: 0;
   margin: 0; }
 
+@media (max-width: 748px) {
+  #menu {
+    position: fixed;
+    top: 1.5rem;
+    left: 0;
+    z-index: 9;
+    width: 0; }
+    #menu > .navbar {
+      position: relative; }
+      #menu > .navbar > button {
+        background-color: #fff;
+        border-color: #3f0a73; }
+
+  #navbarNavDropdown {
+    position: absolute;
+    top: 100%;
+    width: calc(99vw - 30px);
+    background-color: white;
+    padding: 1rem 0px;
+    box-shadow: #bbbbbb 0px 0px 5px;
+    max-width: 375px; } }
 #info-cards {
   margin: 1rem auto; }
   #info-cards .info-card {
