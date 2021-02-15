@@ -7,7 +7,7 @@
 @font-face {
   src: url("./fonts/GothamXNarrow-Thin.otf");
   font-family: 'Gotham Narrow Thin'; }
-body {
+body, body > div {
   overflow-x: hidden; }
 
 * {
