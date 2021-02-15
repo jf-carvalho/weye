@@ -73,6 +73,11 @@ header{
 	}
 }
 
+.btn-primary{
+	background: $purple_header !important;
+	border-color: $purple_header !important; 
+}
+
 .text-lightblack{
 	color: #212529 !important;
 }
@@ -96,6 +101,48 @@ header{
 	border: none !important;
 	*{
 		color: #fff !important;
+	}
+}
+
+.custom-check-input{
+	display: none;
+
+	&:checked ~ .custom-check:before{
+		background-color: $purple_header;
+		border-color: $purple_header;
+	}
+
+	&:checked ~.custom-check:after{
+		content: '\f00c';
+		font-family: 'Font Awesome 5 Pro';
+		color: #fff;
+		position: absolute;
+		left: 1.5px;
+		font-size: 11px;
+		top: 4px;
+	}
+}
+
+.custom-check{
+	position: relative;
+	padding-left: 1.25rem;
+	
+	label{
+		cursor: pointer !important;	
+	}
+
+	&:before{
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 6px;
+		height: 13px;
+		width: 13px;
+		border-radius: 1px;
+		display: block;
+		background-color: #fff;
+		border: 1px solid #ccc;
+		transition: all .15s;
 	}
 }
 

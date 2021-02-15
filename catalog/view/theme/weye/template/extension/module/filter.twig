@@ -1,7 +1,7 @@
 <div class="panel panel-default">
   <div class="list-group"> 
   {% for filter_group in filter_groups %} 
-    <a class="list-group-item text-lightblack">
+    <a class="list-group-item text-lightblack mb-4">
       <strong class="text-uppercase">{{ filter_group.name }}</strong>
     </a>
 
@@ -10,16 +10,16 @@
         {% for filter in filter_group.filter %}
           <div class="checkbox">
               {% if filter.filter_id in filter_category %}
-                <div class="form-check">
-                  <input class="form-check-input" name="filter[]" type="checkbox" value="{{ filter.filter_id }}" id="filter{{filter.filter_id}}" checked="checked">
-                  <label class="form-check-label" for="filter{{filter.filter_id}}">
+                <input class="custom-check-input" name="filter[]" type="checkbox" value="{{ filter.filter_id }}" id="filter{{filter.filter_id}}" checked="checked">
+                <div class="custom-check mb-2">
+                  <label class="custom-check-label" for="filter{{filter.filter_id}}">
                     {{ filter.name }}
                   </label>
                 </div>
               {% else %}
-                <div class="form-check">
-                  <input class="form-check-input" name="filter[]" type="checkbox" value="{{ filter.filter_id }}" id="filter{{filter.filter_id}}">
-                  <label class="form-check-label" for="filter{{filter.filter_id}}">
+                <input class="custom-check-input" name="filter[]" type="checkbox" value="{{ filter.filter_id }}" id="filter{{filter.filter_id}}">
+                <div class="custom-check mb-2">
+                  <label class="custom-check-label" for="filter{{filter.filter_id}}">
                     {{ filter.name }}
                   </label>
                 </div>
@@ -33,7 +33,7 @@
 
 </div>
 
-<div class="panel-footer text-right">
+<div class="panel-footer text-left">
   <button type="button" id="button-filter" class="btn btn-primary">{{ button_filter }}</button>
 </div>
 

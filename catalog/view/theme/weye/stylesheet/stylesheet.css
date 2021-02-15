@@ -47,6 +47,10 @@ header {
   .fixed.active:after {
     opacity: 1; }
 
+.btn-primary {
+  background: #3f0a73 !important;
+  border-color: #3f0a73 !important; }
+
 .text-lightblack {
   color: #212529 !important; }
 
@@ -67,6 +71,38 @@ header {
   border: none !important; }
   .alert-success * {
     color: #fff !important; }
+
+.custom-check-input {
+  display: none; }
+  .custom-check-input:checked ~ .custom-check:before {
+    background-color: #3f0a73;
+    border-color: #3f0a73; }
+  .custom-check-input:checked ~ .custom-check:after {
+    content: '\f00c';
+    font-family: 'Font Awesome 5 Pro';
+    color: #fff;
+    position: absolute;
+    left: 1.5px;
+    font-size: 11px;
+    top: 4px; }
+
+.custom-check {
+  position: relative;
+  padding-left: 1.25rem; }
+  .custom-check label {
+    cursor: pointer !important; }
+  .custom-check:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    height: 13px;
+    width: 13px;
+    border-radius: 1px;
+    display: block;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    transition: all .15s; }
 
 #carousel-carrossel-home-mobile {
   display: none; }
