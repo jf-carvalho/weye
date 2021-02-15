@@ -359,6 +359,9 @@ class ControllerProductCategory extends Controller {
 			$data['footer'] = $this->load->controller('common/footer');
 			$data['header'] = $this->load->controller('common/header');
 
+			$data['product_list_unit_col'] = '4';
+			$data['products_partial'] = $this->load->view('product/products_list', $data);
+
 			$this->response->setOutput($this->load->view('product/category', $data));
 		} else {
 			$url = '';

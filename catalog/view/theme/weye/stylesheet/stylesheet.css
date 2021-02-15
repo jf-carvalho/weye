@@ -16,6 +16,16 @@ body, body > div:not(:first-of-type) {
 header {
   background: #3f0a73; }
 
+.breadcrumb {
+  background: none;
+  padding: 0; }
+  .breadcrumb .fa.fa-home {
+    font-size: 20px; }
+  .breadcrumb li {
+    margin-right: 1rem; }
+    .breadcrumb li a {
+      color: #444; }
+
 .fixed {
   position: fixed;
   top: 0;
@@ -245,5 +255,35 @@ footer .social_media {
 footer #disclaimer {
   background-color: #e6e6e6;
   color: #6c6c6c; }
+
+#product-category {
+  border-top: 10px solid #3f0a73; }
+  #product-category .products_list .list_title {
+    display: none; }
+  #product-category .input-group-addon {
+    padding: 2px 7px;
+    height: calc(1.5em + .5rem + 3.5px);
+    margin: 0 !important;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-right: 0;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    color: #666;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px; }
+  #product-category .list-group {
+    border-radius: 0; }
+    #product-category .list-group .list-group-item {
+      padding: 0;
+      margin-bottom: .75rem;
+      border: none;
+      color: #444; }
+      #product-category .list-group .list-group-item.active {
+        background: none;
+        color: #3f0a73; }
+  #product-category .products_list {
+    margin-top: 0 !important; }
 
 /*# sourceMappingURL=stylesheet.css.map */

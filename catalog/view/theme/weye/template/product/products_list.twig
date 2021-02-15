@@ -2,7 +2,13 @@
   <h5 class="text-uppercase list_title mb-5">{{ heading_title }}</h5>
   <div class="row">
     {% for product in products %}
-    <div class="col-12 col-md-6 col-lg-3 product_unit">
+      {% if product_list_unit_col %}
+        {% set col = product_list_unit_col %}
+      {% else %}
+        {% set col = '3' %}
+      {% endif %}
+
+    <div class="col-12 col-md-6 col-lg-{{ col }} product_unit mb-4">
 
       {% if product.special %}
         <span class="tag_special">OFERTA</span>

@@ -33,6 +33,22 @@ header{
 }
 
 // COMMON CLASSES
+.breadcrumb{
+	background: none;
+	padding: 0;
+
+	.fa.fa-home{
+		font-size: 20px;
+	}
+
+	li{
+		margin-right: 1rem;
+		a{
+			color: #444;
+		}
+	}
+}
+
 .fixed{
 	position: fixed;
 	top: 0;
@@ -367,5 +383,51 @@ footer{
 	#disclaimer{
 		background-color: #e6e6e6;
 		color: #6c6c6c;
+	}
+}
+
+//CATEGORY
+#product-category{
+	border-top: 10px solid $purple_header;
+
+	.products_list .list_title{
+		display: none;
+	}
+
+	.input-group-addon{
+		padding: 2px 7px;
+		height: calc(1.5em + .5rem + 3.5px);
+		margin: 0 !important;
+		background-color: #eee;
+		border: 1px solid #ccc;
+		border-right: 0;
+		font-size: 13px;
+		display: flex;
+		align-items: center;
+		color: #666;
+		border-top-left-radius: 2px;
+		border-bottom-left-radius: 2px;
+	}
+
+	.input-group > .custom-select:not(:first-child), .input-group > .form-control:not(:first-child){
+		// margin-left: 10px;
+	}
+
+	.list-group{
+		border-radius: 0;
+		.list-group-item{
+			padding: 0;
+			margin-bottom: .75rem;
+			border: none;
+			color: #444;
+			&.active{
+				background: none;
+				color: $purple_header;
+			}
+		}
+	}
+
+	.products_list {
+		margin-top: 0 !important;
 	}
 }
