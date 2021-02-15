@@ -42,6 +42,7 @@ header{
 	z-index: 99;
 	padding: 0;
 	margin: 0;
+	overflow: unset !important;
 	&:after{
 		content: '';
 		display: block;

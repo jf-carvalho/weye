@@ -24,7 +24,8 @@ header {
   max-width: unset !important;
   z-index: 99;
   padding: 0;
-  margin: 0; }
+  margin: 0;
+  overflow: unset !important; }
   .fixed:after {
     content: '';
     display: block;
