@@ -20,7 +20,7 @@ $thin: 'Gotham Narrow Thin';
 $purple_header: #3f0a73;
 $lightpurple: #ee05f2;
 
-body, body >div{
+body, body >div:not(:first-of-type){
 	overflow-x: hidden;
 }
 
