@@ -1,3 +1,35 @@
+$(document).ready(function () {
+
+  $(window).scroll(function (event) {
+    var $obj = $('.navbar-mainmenu');
+    var top = $obj.offset().top - parseFloat($obj.css('marginTop').replace(/auto/, 0));
+
+    var y = $(this).scrollTop();
+
+    // whether that's below the form
+    if (y >= top) {
+      
+      if(!document.getElementById('fixed-menu')){
+      	$newMenu = $obj.clone()
+      	$newMenu.attr('id', 'fixed-menu')
+      	$newMenu.addClass('fixed')
+      	$('body').append($newMenu)
+      }else{
+      	$("#fixed-menu").show()
+      }
+
+      setTimeout(function(){
+      	$("#fixed-menu").addClass('active')
+      }, 250)
+
+    } else {
+      // otherwise remove it
+      $("#fixed-menu").removeClass('active');
+      $("#fixed-menu").hide();
+    }
+  });
+});
+
 function getURLVar(key) {
 	var value = [];
 
@@ -90,11 +122,11 @@ $(document).ready(function() {
 	});
 
 	// Menu
-	$('#menu .dropdown-menu').each(function() {
-		var menu = $('#menu').offset();
+	$('.navbar-mainmenu .dropdown-menu').each(function() {
+		var menu = $('.navbar-mainmenu').offset();
 		var dropdown = $(this).parent().offset();
 
-		var i = (dropdown.left + $(this).outerWidth()) - (menu.left + $('#menu').outerWidth());
+		var i = (dropdown.left + $(this).outerWidth()) - (menu.left + $('.navbar-mainmenu').outerWidth());
 
 		if (i > 0) {
 			$(this).css('margin-left', '-' + (i + 10) + 'px');

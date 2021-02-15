@@ -16,6 +16,26 @@ body, body > div:not(:first-of-type) {
 header {
   background: #3f0a73; }
 
+.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  max-width: unset !important;
+  z-index: 99;
+  padding: 0;
+  margin: 0; }
+  .fixed:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 4px;
+    background-color: #3f0a73;
+    opacity: 0;
+    transition: all 1s; }
+  .fixed.active:after {
+    opacity: 1; }
+
 .text-lightpurple {
   color: #ee05f2 !important; }
 
@@ -94,29 +114,33 @@ header {
 #cart table tr:not(:last-of-type) {
   border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
 
-#menu .nav-link {
+@media (max-width: 1200px) {
+  .navbar-mainmenu {
+    max-width: 97.5%;
+    /*this gives it the precise width to match the Bootstrap defaults*/ } }
+.navbar-mainmenu .navbar ul li.nav-item a.nav-link {
   color: #000;
   text-transform: uppercase;
   font-family: "Gotham Narrow Book";
   font-weight: 600; }
-  #menu .nav-link.dropdown-toggle:after {
+  .navbar-mainmenu .navbar ul li.nav-item a.nav-link.dropdown-toggle:after {
     content: unset !important; }
-#menu .nav-item .dropdown-menu {
+.navbar-mainmenu .nav-item .dropdown-menu {
   left: unset;
   border: none;
   border-radius: 0;
   margin: 0; }
 
 @media (max-width: 748px) {
-  #menu {
+  .navbar-mainmenu {
     position: fixed;
     top: 1.5rem;
     left: 0;
     z-index: 9;
     width: 0; }
-    #menu > .navbar {
+    .navbar-mainmenu > .navbar {
       position: relative; }
-      #menu > .navbar > button {
+      .navbar-mainmenu > .navbar > button {
         background-color: #fff;
         border-color: #3f0a73; }
 
