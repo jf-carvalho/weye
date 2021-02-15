@@ -39,12 +39,13 @@
 
 </div>
 
-<script type="text/javascript"><!--
-  $('#button-filter').on('click', function() {
+<script type="text/javascript">
+
+  document.getElementById('button-filter').addEventListener('click', function(){
     filter = [];
 
-    $('input[name^=\'filter\']:checked').each(function(element) {
-      filter.push(this.value);
+    Array.from(document.querySelectorAll('input[name^=\'filter\']:checked')).forEach(element => {
+      filter.push(element.value);
     });
 
     if (filter != 0) {
@@ -52,5 +53,6 @@
     } else if (filter = []) {
         location = '{{ action }}';
     }
-  });
-//--></script> 
+  }, true)
+
+</script> 

@@ -32,7 +32,7 @@ $_['text_month']               = 'Mensal';
 $_['text_year']                = 'Anual';
 
 // Entry
-$_['entry_qty']                = 'Qtd';
+$_['entry_qty']                = 'Quantidade';
 $_['entry_name']               = 'Seu nome';
 $_['entry_review']             = 'Seu comentário';
 $_['entry_rating']             = 'Avaliação';
