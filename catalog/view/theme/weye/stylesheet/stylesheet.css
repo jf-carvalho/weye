@@ -47,6 +47,9 @@ header {
   .fixed.active:after {
     opacity: 1; }
 
+.text-lightblack {
+  color: #212529 !important; }
+
 .text-lightpurple {
   color: #ee05f2 !important; }
 
