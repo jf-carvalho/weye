@@ -59,7 +59,8 @@ class ControllerExtensionModuleSpecial extends Controller {
 					'special'     => $special,
 					'tax'         => $tax,
 					'rating'      => $rating,
-					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'])
+					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id']),
+					'is_in_wishlist' => (bool)$this->model_catalog_product->is_in_wishlist((int)$this->customer->getId(), (int)$result['product_id'])
 				);
 			}
 

@@ -454,6 +454,8 @@ class ControllerProductProduct extends Controller {
 			$data['footer'] = $this->load->controller('common/footer');
 			$data['header'] = $this->load->controller('common/header');
 
+			$data['is_in_wishlist'] => (bool)$this->model_catalog_product->is_in_wishlist((int)$this->customer->getId(), (int)$this->request->get['product_id']);
+
 			$this->response->setOutput($this->load->view('product/product', $data));
 		} else {
 			$url = '';

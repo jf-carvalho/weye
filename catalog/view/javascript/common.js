@@ -365,22 +365,52 @@ var wishlist = {
 
 				if (json['success']) {
 					$('#content').parent().before('<div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
-					$(e).find('i').removeClass('fal')
+					$(e).off('click');
+					$(e).on('click', function(){
+						wishlist.remove(this, product_id)
+					});
+					$(e).find('i').removeClass('far')
 					$(e).find('i').addClass('fas')
 				}
 
 				$('#wishlist-total span').html(json['total']);
 				$('#wishlist-total').attr('title', json['total']);
-
-				// $('html, body').animate({ scrollTop: 0 }, 'slow');
 			},
 			error: function(xhr, ajaxOptions, thrownError) {
 				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 			}
 		});
 	},
-	'remove': function() {
+	'remove': function(e, product_id) {
+		$.ajax({
+			url: 'index.php?route=account/wishlist/remove',
+			type: 'post',
+			data: {product_id: product_id},
+			dataType: 'json',
+			success: function(json) {
+				$('.alert-dismissible').remove();
 
+				if (json['redirect']) {
+					location = json['redirect'];
+				}
+
+				if (json['success']) {
+					$('#content').parent().before('<div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+					$(e).off('click');
+					$(e).on('click', function(){
+						wishlist.add(this, product_id)
+					});
+					$(e).find('i').removeClass('fas')
+					$(e).find('i').addClass('far')
+				}
+
+				$('#wishlist-total span').html(json['total']);
+				$('#wishlist-total').attr('title', json['total']);
+			},
+			error: function(xhr, ajaxOptions, thrownError) {
+				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			}
+		});
 	}
 }
 

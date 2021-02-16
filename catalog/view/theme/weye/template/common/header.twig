@@ -65,7 +65,7 @@
               <div>Meu perfil</div>
               <div>
                 {% if logged %}
-                  <a href="" class="text-white">Minha conta</a>
+                  <a href="{{ account }}" class="text-white">Minha conta</a>
                 {% else %}
                   <a href="{{ login }}" class="text-white">{{ text_login }}</a>
                   ou

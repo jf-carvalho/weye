@@ -156,4 +156,19 @@ class ControllerAccountWishList extends Controller {
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
+
+	public function remove(){
+		// Remove Wishlist
+		$this->load->language('account/wishlist');
+
+		$this->load->model('account/wishlist');
+
+		$this->load->model('catalog/product');
+
+		$this->model_account_wishlist->deleteWishlist($this->request->post['product_id']);
+
+		$data['success'] = $this->language->get('text_remove');
+
+		$this->response->setOutput(json_encode($data));
+	}
 }
