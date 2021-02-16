@@ -42,6 +42,8 @@ class ControllerCommonMenu extends Controller {
 			}
 		}
 
+		$data['account'] = $this->url->link('account/account', '', true);
+
 		return $this->load->view('common/menu', $data);
 	}
 }
