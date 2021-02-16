@@ -68,6 +68,7 @@
               <div>
                 {% if logged %}
                   <a href="{{ account }}" class="text-white">Minha conta</a>
+                  <a href="{{ logout }}" title="Sair da sua conta"><i class="fas fa-power-off text-danger ml-2"></i></a>
                 {% else %}
                   <a href="{{ login }}" class="text-white">{{ text_login }}</a>
                   ou
