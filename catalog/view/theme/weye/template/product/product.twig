@@ -98,34 +98,30 @@
                   <div id="review"></div>
                   <h2>{{ text_write }}</h2>
                   {% if review_guest %}
-                  <div class="form-group required">
-                    <div class="col-sm-12">
-                      <label class="control-label" for="input-name">{{ entry_name }}</label>
-                      <input type="text" name="name" value="{{ customer_name }}" id="input-name" class="form-control" />
+                  <div class="row">
+                    <div class="form-group required col-sm-12">
+                        <label class="control-label" for="input-name">{{ entry_name }}</label>
+                        <input type="text" name="name" value="{{ customer_name }}" id="input-name" class="form-control" />
                     </div>
-                  </div>
-                  <div class="form-group required">
-                    <div class="col-sm-12">
+                    <div class="form-group required col-sm-12">
                       <label class="control-label" for="input-review">{{ entry_review }}</label>
                       <textarea name="text" rows="5" id="input-review" class="form-control"></textarea>
-                      <div class="help-block">{{ text_note }}</div>
                     </div>
+                    <div class="form-group required col-sm-12">
+                        <label class="control-label">{{ entry_rating }}</label>
+                        &nbsp;&nbsp;&nbsp; {{ entry_bad }}&nbsp;
+                        <input type="radio" name="rating" value="1" />
+                        &nbsp;
+                        <input type="radio" name="rating" value="2" />
+                        &nbsp;
+                        <input type="radio" name="rating" value="3" />
+                        &nbsp;
+                        <input type="radio" name="rating" value="4" />
+                        &nbsp;
+                        <input type="radio" name="rating" value="5" />
+                        &nbsp;{{ entry_good }}</div>
                   </div>
-                  <div class="form-group required">
-                    <div class="col-sm-12">
-                      <label class="control-label">{{ entry_rating }}</label>
-                      &nbsp;&nbsp;&nbsp; {{ entry_bad }}&nbsp;
-                      <input type="radio" name="rating" value="1" />
-                      &nbsp;
-                      <input type="radio" name="rating" value="2" />
-                      &nbsp;
-                      <input type="radio" name="rating" value="3" />
-                      &nbsp;
-                      <input type="radio" name="rating" value="4" />
-                      &nbsp;
-                      <input type="radio" name="rating" value="5" />
-                      &nbsp;{{ entry_good }}</div>
-                  </div>
+
                   {{ captcha }}
                   <div class="buttons clearfix">
                     <div class="pull-right">
@@ -160,7 +156,6 @@
                     {% else %}
                       <span>
                         <i class="fas fa-star text-warning"></i>
-                        <i class="fas fa-star text-lighgray"></i>
                       </span>
                     {% endif %}
                   {% endfor %}
