@@ -22,7 +22,7 @@
 
       <div class="d-flex justify-content-between align-items-center">
         <div class="w-25">
-          <button type="button" class="btn-wishlist" data-toggle="tooltip" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product.product_id }}');">
+          <button type="button" class="btn-wishlist" onclick="wishlist.add(this, '{{ product.product_id }}');">
             <i class="far fa-heart"></i>
           </button>
         </div>

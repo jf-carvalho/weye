@@ -110,17 +110,36 @@ body > div:not(:first-of-type):not(#common-home):not(.fixed){
 	color: #ddd !important;
 }
 
-.alert-success{
+.alert{
 	position: fixed !important;
 	bottom: 1rem;
 	right: 1rem;
 	z-index: 9;
 	max-width: 300px;
-	background-color: rgba(36, 188, 122, .85) !important;
 	color: #fff !important;
 	border: none !important;
-	*{
-		color: #fff !important;
+
+	&.alert-success{
+		background-color: rgba(36, 188, 122, .85) !important;
+		*{
+			color: #fff !important;
+		}
+	}
+
+	&.alert-warning{
+		background-color: rgba(255, 200, 0, .3) !important;
+		color: #444 !important;
+		*{
+			color: #444 !important;
+		}
+	}
+
+	&.alert-danger{
+		background-color: rgba(195, 10, 45, .5) !important;
+		color: #721c24 !important;
+		*{
+			color: #721c24 !important;	
+		}
 	}
 }
 

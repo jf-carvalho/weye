@@ -78,17 +78,28 @@ body > div:not(:first-of-type):not(#common-home):not(.fixed) {
 .text-lightgray {
   color: #ddd !important; }
 
-.alert-success {
+.alert {
   position: fixed !important;
   bottom: 1rem;
   right: 1rem;
   z-index: 9;
   max-width: 300px;
-  background-color: rgba(36, 188, 122, 0.85) !important;
   color: #fff !important;
   border: none !important; }
-  .alert-success * {
-    color: #fff !important; }
+  .alert.alert-success {
+    background-color: rgba(36, 188, 122, 0.85) !important; }
+    .alert.alert-success * {
+      color: #fff !important; }
+  .alert.alert-warning {
+    background-color: rgba(255, 200, 0, 0.3) !important;
+    color: #444 !important; }
+    .alert.alert-warning * {
+      color: #444 !important; }
+  .alert.alert-danger {
+    background-color: rgba(195, 10, 45, 0.5) !important;
+    color: #721c24 !important; }
+    .alert.alert-danger * {
+      color: #721c24 !important; }
 
 .custom-check-input {
   display: none; }
