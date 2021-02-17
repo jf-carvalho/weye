@@ -365,7 +365,7 @@ var wishlist = {
 
 				if (json['success']) {
 					$('#content').parent().before('<div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
-					//rolar pra cima
+					
 					$(e).off('click');
 					$(e).on('click', function(){
 						wishlist.remove(this, product_id)
