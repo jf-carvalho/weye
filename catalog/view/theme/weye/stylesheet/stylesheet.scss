@@ -106,6 +106,16 @@ body > div:not(:first-of-type):not(#common-home):not(.fixed){
 	border-color: $purple_header !important; 
 }
 
+.btn-lightpurple{
+	background: $lightpurple !important;
+	border-color: $lightpurple !important; 
+	color: #fff !important;
+}
+
+.border-radius-0{
+	border-radius: 0 !important;
+}
+
 .text-lightblack{
 	color: #212529 !important;
 }
@@ -120,6 +130,10 @@ body > div:not(:first-of-type):not(#common-home):not(.fixed){
 
 .text-lightgray{
 	color: #ddd !important;
+}
+
+.bg-primary{
+	background: $purple_header !important;
 }
 
 .alert{
@@ -492,9 +506,14 @@ body > div:not(:first-of-type):not(#common-home):not(.fixed){
 
 //FOOTER
 footer{
+	.newsletter_wrapper{
+
+	}
+
 	.social_media{
 		color: $lightpurple;
 	}
+
 	#disclaimer{
 		background-color: #e6e6e6;
 		color: #6c6c6c;

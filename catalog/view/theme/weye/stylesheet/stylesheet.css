@@ -75,6 +75,14 @@ body > div:not(:first-of-type):not(#common-home):not(.fixed) {
   background: #3f0a73 !important;
   border-color: #3f0a73 !important; }
 
+.btn-lightpurple {
+  background: #ee05f2 !important;
+  border-color: #ee05f2 !important;
+  color: #fff !important; }
+
+.border-radius-0 {
+  border-radius: 0 !important; }
+
 .text-lightblack {
   color: #212529 !important; }
 
@@ -86,6 +94,9 @@ body > div:not(:first-of-type):not(#common-home):not(.fixed) {
 
 .text-lightgray {
   color: #ddd !important; }
+
+.bg-primary {
+  background: #3f0a73 !important; }
 
 .alert {
   position: fixed !important;
