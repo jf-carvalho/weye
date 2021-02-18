@@ -1,32 +1,34 @@
 <footer>
 
-  <div class="newsletter_wrapper pt-5 pb-4 bg-primary mb-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-12 mb-3 col-lg-6 mb-lg-0">
-          <h3 class="text-center text-lg-left text-white mb-0">DESEJA RECEBER</h3>
-          <h3 class="text-center text-lg-left text-lightpurple">DESCONTOS EXCLUSIVOS?</h3>
-        </div>
-        <div class="col-12 col-lg-6">
-          <div class="row">
-            <div class="col-12 col-lg-7 mb-3 mb-lg-0 pr-lg-0">
-              <input type="text" name="newsletter_email" class="form-control border-radius-0" placeholder="Seu melhor email">
-            </div>
-            <div class="col-12 col-lg-5 mb-3 mb-lg-0">
-              <button class="btn btn-lightpurple w-100 border-radius-0"> <i class="fal fa-paper-plane"></i> Quero descontos</button>
-            </div>
+  {% if not logged or not in_newsletter %}
+    <div class="newsletter_wrapper pt-5 pb-4 bg-primary mb-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 mb-3 col-lg-6 mb-lg-0">
+            <h3 class="text-center text-lg-left text-white mb-0">DESEJA RECEBER</h3>
+            <h3 class="text-center text-lg-left text-lightpurple">DESCONTOS EXCLUSIVOS?</h3>
           </div>
-          <div class="row">
-            <div class="col-12">
-              <small class="text-center text-white">
-                Ao concluir, você aceitará nossos <a href="#">Termos de uso</a> e <a href="#">Políticas de privacidade</a>. Desconto não aplicado para produtos da seleção. <a href="#">Confira o regulamento</a>
-              </small>
+          <div class="col-12 col-lg-6">
+            <div class="row">
+              <div class="col-12 col-lg-7 mb-3 mb-lg-0 pr-lg-0">
+                <input type="text" name="newsletter_email" class="form-control border-radius-0" placeholder="Seu melhor email">
+              </div>
+              <div class="col-12 col-lg-5 mb-3 mb-lg-0">
+                <button onclick="redirect()" class="btn btn-lightpurple w-100 border-radius-0"> <i class="fal fa-paper-plane"></i> Quero descontos</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <small class="text-center text-white">
+                  Ao concluir, você aceitará nossos <a href="#">Termos de uso</a> e <a href="#">Políticas de privacidade</a>. Desconto não aplicado para produtos da seleção. <a href="#">Confira o regulamento</a>
+                </small>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  {% endif %}
 
   <div class="container-fluid px-0">
     <div class="container">
@@ -138,6 +140,44 @@
 
   <script type="text/javascript">
     document.querySelector('a[data-tel="true"]').href = 'tel:'+ document.querySelector('a[data-tel="true"]').getAttribute('data-telnumber').replace(/[^0-9\\.]+/g, '')
+
+    const redirect = () => {
+      const email_input = document.querySelector('input[name="newsletter_email"]')
+
+      if(validateEmail(email_input.value)){
+        {% if logged %}
+          $.ajax({
+            url: '{{ action_newsletter }}',
+            type: 'post',
+            data: {newsletter: '1', ajax: true},
+            success: function(res){
+              if(res['success']){
+                $('#content').parent().before(`<div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle mr-3"></i>${res['success']}<button type="button" class="close" data-dismiss="alert">&times;</button></div>`);
+
+                $('.newsletter_wrapper').css({
+                  'transition': 'all 2s',
+                  'opacity': '0'
+                })
+
+                setTimeout(function(){
+                   $('.newsletter_wrapper').hide()
+                },2500)
+              }
+            }
+          })
+        {% else %}
+          location.href = `{{ register }}?newsletter=true&email=${email_input.value}`
+        {% endif %}
+      }else{
+        $('#content').parent().before('<div class="alert alert-warning alert-dismissible"><i class="fa fa-exclamation-triangle mr-3"></i>Email inválido<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+      }
+      
+    }
+
+    const validateEmail = email => {
+      const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+    }
   </script>
 
 </body>

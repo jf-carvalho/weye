@@ -16,9 +16,14 @@ class ControllerAccountNewsletter extends Controller {
 
 			$this->model_account_customer->editNewsletter($this->request->post['newsletter']);
 
-			$this->session->data['success'] = $this->language->get('text_success');
-
-			$this->response->redirect($this->url->link('account/account', '', true));
+			if( isset($this->request->post['ajax'])){
+				$json['success'] = $this->language->get('text_success');
+				$this->response->addHeader('Content-Type: application/json');
+				$this->response->setOutput(json_encode($json));
+			}else{
+				$this->session->data['success'] = $this->language->get('text_success');
+				$this->response->redirect($this->url->link('account/account', '', true));
+			}
 		}
 
 		$data['breadcrumbs'] = array();
@@ -51,6 +56,12 @@ class ControllerAccountNewsletter extends Controller {
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
 
-		$this->response->setOutput($this->load->view('account/newsletter', $data));
+		if(isset($this->request->post['ajax'])){
+			$json['success'] = $this->language->get('text_success');
+			$this->response->addHeader('Content-Type: application/json');
+			$this->response->setOutput(json_encode($json));
+		}else{
+			$this->response->setOutput($this->load->view('account/newsletter', $data));
+		}
 	}
 }

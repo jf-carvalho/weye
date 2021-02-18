@@ -78,6 +78,10 @@ class ControllerCommonFooter extends Controller {
 		}
 
 		$data['scripts'] = $this->document->getScripts('footer');
+		$data['register'] = $this->url->link('account/register', '', true);
+		$data['logged'] = $this->customer->isLogged();
+		$data['in_newsletter'] = $data['logged'] ? $this->customer->getNewsletter() : false;
+		$data['action_newsletter'] = $this->url->link('account/newsletter', '', true);
 
 		return $this->load->view('common/footer', $data);
 	}
