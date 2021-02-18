@@ -217,7 +217,7 @@ var cart = {
 						const total = json['total'].split(' - ')[1]
 						$('#cart > button').html(`
 							<div class="d-flex justify-content-around">
-							  <div><i class="fal fa-shopping-cart fa-3x text-white"></i></div>
+							  <div><i class="fal fa-shopping-cart fa-2x px-2 text-white"></i></div>
 							  <div class="text-left text-white">
 							    <div>${items} itens</div><div>${total}</div>
 							  </div>
@@ -250,28 +250,45 @@ var cart = {
 			success: function(json) {
 				// Need to set timeout otherwise it wont update the total
 				setTimeout(function () {
+					const items = json['total'].split(' - ')[0]
+					const total = json['total'].split(' - ')[1]
 					$('#cart > button').html(`
 						<div class="d-flex justify-content-around">
-						  <div><i class="fal fa-shopping-cart fa-3x text-white"></i></div>
+						  <div><i class="fal fa-shopping-cart fa-2x px-2 text-white"></i></div>
 						  <div class="text-left text-white">
-						    <div>${itens} itens</div><div>${total}</div>
+						    <div>${items} itens</div><div>${total}</div>
 						  </div>
 						</div>
 						`);
 				}, 100);
 
-				if (getURLVar('route') == 'checkout/cart' || getURLVar('route') == 'checkout/checkout') {
-					location = 'index.php?route=checkout/cart';
-				} else {
-					$('#cart > ul').load('index.php?route=common/cart/info ul li');
-				}
 			},
 			error: function(xhr, ajaxOptions, thrownError) {
 				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 			}
 		});
 	},
-	'remove': function(key) {
+	'update_view': function(){
+		$.ajax({
+			url: 'index.php?route=checkout/cart/update_view',
+			type: 'get',
+			dataType: 'json',
+			success: function(res) {
+				$("#table_totals tr").remove()
+				Array.from(res.totals).forEach(total => {
+				  $("#table_totals").append($(`<tr>
+				                                <td class="text-left">${total.title}</td>
+				                                <td class="text-right">${total.text}</td>
+				                              </tr>`))
+				})	
+
+			},
+			error: function(xhr, ajaxOptions, thrownError) {
+				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			}
+		});
+	},
+	'remove': function(key, cart_page = false, tr = false) {
 		event.stopPropagation();
 		$.ajax({
 			url: 'index.php?route=checkout/cart/remove',
@@ -287,22 +304,21 @@ var cart = {
 			success: function(json) {
 				// Need to set timeout otherwise it wont update the total
 				setTimeout(function () {
-					var itens = json['total'].split(' - ')[0]
-					var total = json['total'].split(' - ')[1]
+					const items = json['total'].split(' - ')[0]
+					const total = json['total'].split(' - ')[1]
 					$('#cart > button').html(`
 						<div class="d-flex justify-content-around">
-						  <div><i class="fal fa-shopping-cart fa-3x text-white"></i></div>
+						  <div><i class="fal fa-shopping-cart fa-2x px-2 text-white"></i></div>
 						  <div class="text-left text-white">
-						    <div>${itens} itens</div><div>${total}</div>
+						    <div>${items} itens</div><div>${total}</div>
 						  </div>
 						</div>
 						`);
 				}, 100);
 
-				if (getURLVar('route') == 'checkout/cart' || getURLVar('route') == 'checkout/checkout') {
-					location = 'index.php?route=checkout/cart';
-				} else {
-					$('#cart > ul').load('index.php?route=common/cart/info ul li');
+				if(cart_page){
+					tr.remove()
+					cart.update_view()
 				}
 			},
 			error: function(xhr, ajaxOptions, thrownError) {
@@ -331,14 +347,18 @@ var voucher = {
 			success: function(json) {
 				// Need to set timeout otherwise it wont update the total
 				setTimeout(function () {
-					$('#cart > button').html('<span id="cart-total"><i class="fa fa-shopping-cart"></i> ' + json['total'] + '</span>');
+					const items = json['total'].split(' - ')[0]
+					const total = json['total'].split(' - ')[1]
+					$('#cart > button').html(`
+						<div class="d-flex justify-content-around">
+						  <div><i class="fal fa-shopping-cart fa-2x px-2 text-white"></i></div>
+						  <div class="text-left text-white">
+						    <div>${items} itens</div><div>${total}</div>
+						  </div>
+						</div>
+						`);
 				}, 100);
 
-				if (getURLVar('route') == 'checkout/cart' || getURLVar('route') == 'checkout/checkout') {
-					location = 'index.php?route=checkout/cart';
-				} else {
-					$('#cart > ul').load('index.php?route=common/cart/info ul li');
-				}
 			},
 			error: function(xhr, ajaxOptions, thrownError) {
 				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);

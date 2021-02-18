@@ -1,4 +1,4 @@
-    <div class="col-12 col-md-4">
+    <div class="col-12 col-md-4 pr-lg-5 mb-3">
 
         <div class="form-group required d-none">
           <label class="col-sm-2 control-label" for="input-country">{{ entry_country }}</label>
@@ -23,16 +23,12 @@
           </div>
         </div>
 
-            <div class="row">
-            	<div class="col-6 pr-0">
-            		<p class="text-center">Calcular frete</p>
-            		<input type="text" name="postcode" value="{{ postcode }}" placeholder="{{ entry_postcode }}" id="input-postcode" class="form-control" />
-            	</div>
-            	<div class="col-3">
-            		<p class="text-transparent">&nbsp;</p>
-            		<button type="button" id="button-quote" data-loading-text="{{ text_loading }}" class="btn btn-primary">{{ button_quote }}</button>
-            	</div>
-            </div>
+        <label class="control-label text-center text-md-left w-100" for="input-shipping">Calcular frete</label>
+        <div class="input-group">
+          <input type="text" name="postcode" value="{{ postcode }}" placeholder="{{ entry_postcode }}" id="input-postcode" class="form-control" />
+          <span class="input-group-btn">
+         <button type="button" id="button-quote" data-loading-text="{{ text_loading }}" class="btn btn-primary">Simular frete</button>
+        </div>
 
       <script type="text/javascript"><!--
 
