@@ -320,6 +320,8 @@ var cart = {
 					tr.remove()
 					cart.update_view()
 				}
+
+				$('#cart > ul').load('index.php?route=common/cart/info ul li');
 			},
 			error: function(xhr, ajaxOptions, thrownError) {
 				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
