@@ -43,6 +43,7 @@ class ControllerCommonMenu extends Controller {
 		}
 
 		$data['account'] = $this->url->link('account/account', '', true);
+		$data['special'] = $this->url->link('product/special');
 
 		return $this->load->view('common/menu', $data);
 	}

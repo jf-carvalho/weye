@@ -266,6 +266,7 @@ class ControllerProductSpecial extends Controller {
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
 
+		$data['products_partial'] = $this->load->view('product/products_list', $data);
 		$this->response->setOutput($this->load->view('product/special', $data));
 	}
 }
