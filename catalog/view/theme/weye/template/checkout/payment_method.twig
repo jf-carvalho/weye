@@ -3,35 +3,46 @@
 {% endif %}
 {% if payment_methods %}
 <p>{{ text_payment_method }}</p>
-{% for payment_method in payment_methods %}
-<div class="radio">
-  <label>{% if payment_method.code == code or not code %}
-    {% set code = payment_method.code %}
-    <input type="radio" name="payment_method" value="{{ payment_method.code }}" checked="checked" />
-    {% else %}
-    <input type="radio" name="payment_method" value="{{ payment_method.code }}" />
-    {% endif %}
-    {{ payment_method.title }}
-    {% if payment_method.terms %}
-    ({{ payment_method.terms }})
-    {% endif %}
-   </label>
+
+<div class="d-flex justify-content-between w-100">
+  {% for payment_method in payment_methods %}
+    <div class="payment_card_col d-flex justify-content-center align-self-center" style="width: calc({{ 100/payment_methods|length }}% - 1rem);">
+      <label class="label border w-100 text-center payment_card d-flex align-items-center justify-content-center">
+        {% if payment_method.code == code or not code %}
+          {% set code = payment_method.code %}
+          <input type="radio" name="payment_method" class="d-none selected" value="{{ payment_method.code }}" checked="checked" onchange="check(this)" />
+        {% else %}
+          <input type="radio" name="payment_method" class="d-none" value="{{ payment_method.code }}" onchange="check(this)" />
+        {% endif %}
+          <div class="w-75">
+            {{ payment_method.title }}
+          </div>
+        {% if payment_method.terms %}
+          <div class="w-75">
+            ({{ payment_method.terms }})
+          </div>
+        {% endif %}
+       </label>
+    </div>
+  {% endfor %}
 </div>
-{% endfor %}
+
 {% endif %}
-<p><strong>{{ text_comments }}</strong></p>
-<p>
-  <textarea name="comment" rows="8" class="form-control">{{ comment }}</textarea>
+<p class="mt-3"><strong>{{ text_comments }}</strong></p>
+<p class="mt-3">
+  <textarea name="comment" rows="5" class="form-control custom-border">{{ comment }}</textarea>
 </p>
 {% if text_agree %}
 <div class="buttons">
-  <div class="pull-right">{{ text_agree }}
+  <div class="pull-right">
     {% if agree %}
     <input type="checkbox" name="agree" value="1" checked="checked" />
     {% else %}
     <input type="checkbox" name="agree" value="1" />
     {% endif %}
-    &nbsp;
+    
+    {{ text_agree }}
+
     <input type="button" value="{{ button_continue }}" id="button-payment-method" data-loading-text="{{ text_loading }}" class="btn btn-primary" />
   </div>
 </div>
@@ -42,3 +53,28 @@
   </div>
 </div>
 {% endif %}
+
+<script type="text/javascript">
+  
+  create_border()
+  
+  function check(elm) {
+    create_border(elm)
+  }
+
+  function create_border(elm = null) {
+    console.log(elm)
+    if(elm){
+      if(elm.checked){
+        Array.from(document.querySelectorAll('.payment_card')).forEach(label => {
+          label.classList.remove('selected')
+        })
+
+        elm.parentElement.classList.add('selected')
+      }
+    }else{
+      document.querySelector('.selected').parentElement.classList.add('selected')
+    }
+  }
+
+</script>

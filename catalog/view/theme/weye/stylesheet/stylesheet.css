@@ -47,6 +47,9 @@ body > div:not(:first-of-type):not(#common-home):not(.fixed) {
 .w-40 {
   width: 40% !important; }
 
+.custom-border {
+  border: 1px solid #444; }
+
 .fixed {
   position: fixed;
   top: 0;
@@ -463,5 +466,34 @@ footer #disclaimer {
     border-radius: 38px;
     font-weight: 900;
     font-size: 22px; }
+
+#checkout-checkout #accordion .panel {
+  display: none; }
+  #checkout-checkout #accordion .panel .panel-title {
+    font-size: 18px;
+    margin-bottom: 1rem; }
+    #checkout-checkout #accordion .panel .panel-title a {
+      color: #262626 !important; }
+  #checkout-checkout #accordion .panel .panel-collapse.collapse {
+    height: unset !important; }
+  #checkout-checkout #accordion .panel.active {
+    display: block; }
+
+#page_content {
+  min-height: 50vh !important; }
+
+.payment_card_col {
+  margin: 0 -.5rem;
+  padding: .5rem;
+  height: 100%;
+  height: 145px !important; }
+
+.payment_card {
+  border-radius: 18px;
+  cursor: pointer; }
+  .payment_card.selected {
+    border-width: 3px !important;
+    border-color: #3f0a73 !important;
+    font-weight: 900; }
 
 /*# sourceMappingURL=stylesheet.css.map */

@@ -57,7 +57,7 @@ class ControllerExtensionModuleBestSeller extends Controller {
 				);
 			}
 
-			return $this->load->view('extension/module/bestseller', $data);
+			return $this->load->view('product/products_list', $data);
 		}
 	}
 }

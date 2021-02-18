@@ -216,7 +216,7 @@ var cart = {
 						const items = json['total'].split(' - ')[0]
 						const total = json['total'].split(' - ')[1]
 						$('#cart > button').html(`
-							<div class="d-flex justify-content-around">
+							<div class="d-flex justify-content-around align-items-center">
 							  <div><i class="fal fa-shopping-cart fa-2x px-2 text-white"></i></div>
 							  <div class="text-left text-white">
 							    <div>${items} itens</div><div>${total}</div>
@@ -253,7 +253,7 @@ var cart = {
 					const items = json['total'].split(' - ')[0]
 					const total = json['total'].split(' - ')[1]
 					$('#cart > button').html(`
-						<div class="d-flex justify-content-around">
+						<div class="d-flex justify-content-around align-items-center">
 						  <div><i class="fal fa-shopping-cart fa-2x px-2 text-white"></i></div>
 						  <div class="text-left text-white">
 						    <div>${items} itens</div><div>${total}</div>
@@ -307,7 +307,7 @@ var cart = {
 					const items = json['total'].split(' - ')[0]
 					const total = json['total'].split(' - ')[1]
 					$('#cart > button').html(`
-						<div class="d-flex justify-content-around">
+						<div class="d-flex justify-content-around align-items-center">
 						  <div><i class="fal fa-shopping-cart fa-2x px-2 text-white"></i></div>
 						  <div class="text-left text-white">
 						    <div>${items} itens</div><div>${total}</div>

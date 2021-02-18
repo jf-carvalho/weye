@@ -44,7 +44,12 @@
     </tfoot>
   </table>
 </div>
-{{ payment }}
+
+<div class="d-flex justify-content-end" id="confirm-buttons">
+  <button class="btn btn-secondary" onclick="location.reload()">Mudar informações do pedido</button>
+  <div class="ml-3">{{ payment }}</div>
+</div>
+
 {% else %} 
 <script type="text/javascript"><!--
   location = '{{ redirect }}';

@@ -73,6 +73,10 @@ body > div:not(:first-of-type):not(#common-home):not(.fixed){
 	width: 40% !important;
 }
 
+.custom-border{
+	border: 1px solid #444;
+}
+
 .fixed{
 	position: fixed;
 	top: 0;
@@ -691,5 +695,52 @@ footer{
 			font-weight: 900;
 			font-size: 22px;
 		}
+	}
+}
+
+#checkout-checkout{
+	#accordion{
+		.panel{
+			display: none;
+
+			.panel-title{
+				a{
+					color: #262626 !important;
+				}
+
+				font-size: 18px;
+				margin-bottom: 1rem;
+			}
+
+			.panel-collapse.collapse{
+				height: unset !important;
+			}
+
+			&.active{
+				display: block;
+			}
+		}
+	}
+}
+
+#page_content{
+	min-height: 50vh !important;
+}
+
+.payment_card_col{
+	margin: 0 -.5rem;
+	padding: .5rem;
+	height: 100%;
+	height: 145px !important;
+}
+
+.payment_card{
+	border-radius: 18px;
+	cursor: pointer;
+
+	&.selected{
+		border-width: 3px !important;
+		border-color: $purple_header !important;
+		font-weight: 900;
 	}
 }
