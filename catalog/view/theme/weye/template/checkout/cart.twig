@@ -188,7 +188,7 @@
   }
 
   function more(event, input, cart_id) {
-    input.value = input.value !== '' ? parseInt(input.value) + 1 : 0
+    input.value = parseInt(input.value) + 1 
     update_cart(event, cart_id, input.value)
   }
   
