@@ -94,7 +94,11 @@ body > div:not(:first-of-type):not(#common-home):not(.fixed) {
   z-index: 9;
   max-width: 300px;
   color: #fff !important;
-  border: none !important; }
+  border: none !important;
+  animation-duration: 2s;
+  animation-delay: 3s;
+  animation-name: disapear;
+  animation-fill-mode: forwards; }
   .alert.alert-success {
     background-color: rgba(36, 188, 122, 0.85) !important; }
     .alert.alert-success * {
@@ -105,11 +109,16 @@ body > div:not(:first-of-type):not(#common-home):not(.fixed) {
     .alert.alert-warning * {
       color: #444 !important; }
   .alert.alert-danger {
-    background-color: rgba(195, 10, 45, 0.5) !important;
-    color: #721c24 !important; }
+    background-color: rgba(195, 10, 45, 0.8) !important;
+    color: #fff !important; }
     .alert.alert-danger * {
-      color: #721c24 !important; }
+      color: #fff !important; }
 
+@keyframes disapear {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
 .custom-check-input {
   display: none; }
   .custom-check-input:checked ~ .custom-check:before {

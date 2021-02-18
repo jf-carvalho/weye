@@ -130,6 +130,10 @@ body > div:not(:first-of-type):not(#common-home):not(.fixed){
 	max-width: 300px;
 	color: #fff !important;
 	border: none !important;
+	animation-duration: 2s;
+	animation-delay: 3s;
+	animation-name: disapear;
+	animation-fill-mode: forwards;
 
 	&.alert-success{
 		background-color: rgba(36, 188, 122, .85) !important;
@@ -147,11 +151,20 @@ body > div:not(:first-of-type):not(#common-home):not(.fixed){
 	}
 
 	&.alert-danger{
-		background-color: rgba(195, 10, 45, .5) !important;
-		color: #721c24 !important;
+		background-color: rgba(195, 10, 45, .8) !important;
+		color: #fff !important;
 		*{
-			color: #721c24 !important;	
+			color: #fff !important;	
 		}
+	}
+}
+
+@keyframes disapear{
+	0%{
+		opacity: 1;
+	}
+	100%{
+		opacity: 0;
 	}
 }
 
