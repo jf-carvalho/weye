@@ -1,12 +1,6 @@
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h4 class="panel-title"><a href="#collapse-shipping" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion">{{ heading_title }} <i class="fa fa-caret-down"></i></a></h4>
-  </div>
-  <div id="collapse-shipping" class="panel-collapse collapse">
-    <div class="panel-body">
-      <p>{{ text_shipping }}</p>
-      <div class="form-horizontal">
-        <div class="form-group required">
+    <div class="col-12 col-md-4">
+
+        <div class="form-group required d-none">
           <label class="col-sm-2 control-label" for="input-country">{{ entry_country }}</label>
           <div class="col-sm-10">
             <select name="country_id" id="input-country" class="form-control">
@@ -21,23 +15,141 @@
             </select>
           </div>
         </div>
-        <div class="form-group required">
+        <div class="form-group required d-none">
           <label class="col-sm-2 control-label" for="input-zone">{{ entry_zone }}</label>
           <div class="col-sm-10">
             <select name="zone_id" id="input-zone" class="form-control">
             </select>
           </div>
         </div>
-        <div class="form-group required">
-          <label class="col-sm-2 control-label" for="input-postcode">{{ entry_postcode }}</label>
-          <div class="col-sm-10">
-            <input type="text" name="postcode" value="{{ postcode }}" placeholder="{{ entry_postcode }}" id="input-postcode" class="form-control" />
-          </div>
-        </div>
-        <button type="button" id="button-quote" data-loading-text="{{ text_loading }}" class="btn btn-primary">{{ button_quote }}</button>
-      </div>
+
+            <div class="row">
+            	<div class="col-6 pr-0">
+            		<p class="text-center">Calcular frete</p>
+            		<input type="text" name="postcode" value="{{ postcode }}" placeholder="{{ entry_postcode }}" id="input-postcode" class="form-control" />
+            	</div>
+            	<div class="col-3">
+            		<p class="text-transparent">&nbsp;</p>
+            		<button type="button" id="button-quote" data-loading-text="{{ text_loading }}" class="btn btn-primary">{{ button_quote }}</button>
+            	</div>
+            </div>
+
       <script type="text/javascript"><!--
-$('#button-quote').on('click', function() {
+
+function getAddress(obj){
+	var zone_id_res = '';
+	switch(obj.uf){
+		case "AC":
+		zone_id_res = "440"
+		break;
+
+		case "AL":
+		zone_id_res = "441"
+		break;
+
+		case "AM":
+		zone_id_res = "442"
+		break;
+
+		case "AP":
+		zone_id_res = "443"
+		break;
+
+		case "BA":
+		zone_id_res = "444"
+		break;
+
+		case "CE":
+		zone_id_res = "445"
+		break;
+
+		case "DF":
+		zone_id_res = "446"
+		break;
+
+		case "ES":
+		zone_id_res = "447"
+		break;
+
+		case "GO":
+		zone_id_res = "448"
+		break;
+
+		case "MA":
+		zone_id_res = "449"
+		break;
+
+		case "MG":
+		zone_id_res = "450"
+		break;
+
+		case "MS":
+		zone_id_res = "451"
+		break;
+
+		case "MT":
+		zone_id_res = "452"
+		break;
+
+		case "PA":
+		zone_id_res = "453"
+		break;
+
+		case "PB":
+		zone_id_res = "454"
+		break;
+
+		case "PE":
+		zone_id_res = "455"
+		break;
+
+		case "PI":
+		zone_id_res = "456"
+		break;
+
+		case "PR":
+		zone_id_res = "457"
+		break;
+
+		case "RJ":
+		zone_id_res = "458"
+		break;
+
+		case "RN":
+		zone_id_res = "459"
+		break;
+
+		case "RO":
+		zone_id_res = "461"
+		break;
+
+		case "RR":
+		zone_id_res = "462"
+		break;
+
+		case "RS":
+		zone_id_res = "460"
+		break;
+
+		case "SC":
+		zone_id_res = "463"
+		break;
+
+		case "SE":
+		zone_id_res = "465"
+		break;
+
+		case "SP":
+		zone_id_res = "464"
+		break;
+
+		case "TO":
+		zone_id_res = "466"
+		break;
+	}
+
+	$('select[name=\'zone_id\']').val(zone_id_res)
+
 	$.ajax({
 		url: 'index.php?route=extension/total/shipping/quote',
 		type: 'post',
@@ -75,8 +187,8 @@ $('#button-quote').on('click', function() {
 			if (json['shipping_method']) {
 				$('#modal-shipping').remove();
 
-				html  = '<div id="modal-shipping" class="modal">';
-				html += '  <div class="modal-dialog">';
+				html  = '<div id="modal-shipping" class="modal fade">';
+				html += '  <div class="modal-dialog modal-dialog-centered">';
 				html += '    <div class="modal-content">';
 				html += '      <div class="modal-header">';
 				html += '        <h4 class="modal-title">{{ text_shipping_method }}</h4>';
@@ -132,6 +244,24 @@ $('#button-quote').on('click', function() {
 			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 		}
 	});
+
+}
+
+$('#button-quote').on('click', function() {
+
+	const formdata = {}
+
+	formdata.country_id = '30'
+
+	const zipcode = $('input[name=\'postcode\']').val();
+
+	fetch(`https://viacep.com.br/ws/${zipcode}/json/`)
+		.then(response => response.json())
+		.then(json => {
+			getAddress(json)
+		})
+
+	return;
 });
 
 $(document).delegate('#button-shipping', 'click', function() {
@@ -210,5 +340,3 @@ $('select[name=\'country_id\']').on('change', function() {
 $('select[name=\'country_id\']').trigger('change');
 //--></script>
     </div>
-  </div>
-</div>

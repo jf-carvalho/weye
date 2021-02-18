@@ -232,19 +232,29 @@ class ControllerCheckoutCart extends Controller {
 
 			$this->load->model('setting/extension');
 
-			$data['modules'] = array();
+			// $data['modules'] = array();
 			
-			$files = glob(DIR_APPLICATION . '/controller/extension/total/*.php');
+			// $files = glob(DIR_APPLICATION . '/controller/extension/total/*.php');
 
-			if ($files) {
-				foreach ($files as $file) {
-					$result = $this->load->controller('extension/total/' . basename($file, '.php'));
+			// if ($files) {
+			// 	foreach ($files as $file) {
+			// 		$result = $this->load->controller('extension/total/' . basename($file, '.php'));
 
-					if ($result) {
-						$data['modules'][] = $result;
-					}
-				}
-			}
+			// 		if ($result) {
+			// 			$data['modules'][] = $result;
+			// 		}
+			// 	}
+			// }
+
+			$data['modules'] = array();
+
+			$file_shipping = (DIR_APPLICATION . '/controller/extension/total/shipping.php');
+			$file_coupon = (DIR_APPLICATION . '/controller/extension/total/coupon.php');
+
+			$result_shipping = $this->load->controller('extension/total/' . basename($file_shipping, '.php'));
+			$result_coupon = $this->load->controller('extension/total/' . basename($file_coupon, '.php'));
+
+			array_push($data['modules'], $result_shipping, $result_coupon);
 
 			$data['column_left'] = $this->load->controller('common/column_left');
 			$data['column_right'] = $this->load->controller('common/column_right');

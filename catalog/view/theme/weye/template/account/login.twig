@@ -1,10 +1,10 @@
 {{ header }}
 <div id="account-login" class="container-fluid px-0">
  
-  <div class="subs">
+{#   <div class="subs">
     <h5 class="text-center">LOGIN</h5>
   </div>
-
+ #}
   {% if success %}
   <div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i> {{ success }}</div>
   {% endif %}
@@ -31,11 +31,11 @@
         </div> #}
         <div class="col-12 col-md-6 offset-md-3 col-lg-4 offset-lg-4 mb-5">
             
-            <div id="icon" class="d-flex justify-content-center align-items-center">
-              <i class="fas fa-user text-white"></i>
+            <div id="icon" class="d-flex justify-content-center align-items-center mb-5 text-purple">
+              <i class="fas fa-user-circle fa-10x"></i>
             </div>
 
-            <p class="text-center label">ENTRE COM O EMAIL E SENHA</p>
+            {# <p class="text-center label">ENTRE COM O EMAIL E SENHA</p> #}
             <form action="{{ action }}" method="post" enctype="multipart/form-data">
               <div class="form-group">
                 <input type="text" name="email" value="{{ email }}" placeholder="{{ entry_email }}" id="input-email" class="form-control" />

@@ -213,11 +213,13 @@ var cart = {
 
 					// Need to set timeout otherwise it wont update the total
 					setTimeout(function () {
+						const items = json['total'].split(' - ')[0]
+						const total = json['total'].split(' - ')[1]
 						$('#cart > button').html(`
 							<div class="d-flex justify-content-around">
 							  <div><i class="fal fa-shopping-cart fa-3x text-white"></i></div>
 							  <div class="text-left text-white">
-							    <div>${itens} itens</div><div>${total}</div>
+							    <div>${items} itens</div><div>${total}</div>
 							  </div>
 							</div>
 							`);
