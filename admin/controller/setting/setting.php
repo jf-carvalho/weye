@@ -17,6 +17,12 @@ class ControllerSettingSetting extends Controller {
 			$this->response->redirect($this->url->link('setting/store', 'user_token=' . $this->session->data['user_token'], true));
 		}
 
+		if(isset($this->request->get['expandmenu'])){
+			$expanded = ($this->request->get['expanded']);
+			$this->model_setting_setting->editSettingValue('config', 'menu_is_expanded', $expanded);
+			die(); 
+		}
+
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];
 		} else {

@@ -35,6 +35,15 @@ class ControllerCommonColumnLeft extends Controller {
 				);
 			}
 
+			$destaques = $this->db->query('SELECT module_id, name FROM ' . DB_PREFIX . 'module WHERE code = "featured"')->rows;
+			foreach ($destaques as $key => $destaque) {
+				$catalog[] = array(
+					'name'	   => $destaque['name'],
+					'href'     => $this->url->link('extension/module/featured', 'user_token=' . $this->session->data['user_token'], true) . '&module_id='.$destaque['module_id'],
+					'children' => array()
+				);
+			}
+
 			if ($this->user->hasPermission('access', 'catalog/recurring')) {
 				$catalog[] = array(
 					'name'	   => $this->language->get('text_recurring'),
@@ -715,6 +724,9 @@ class ControllerCommonColumnLeft extends Controller {
 			} else {
 				$data['other_status'] = 0;
 			}
+
+			$data['user_token'] = $this->session->data['user_token'];
+			$data['menu_is_expanded'] = $this->config->get('menu_is_expanded');
 			
 			return $this->load->view('common/column_left', $data);
 		}

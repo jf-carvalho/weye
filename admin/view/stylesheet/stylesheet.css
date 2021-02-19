@@ -1,5 +1,22 @@
 @import url(//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,greek-ext,vietnamese);
 
+.bg-primary, .tile-primary, .btn-primary{
+    background: #3f0a73 !important;
+}
+
+.progress-bar-warning{
+    background: #3f0a73 !important;
+}
+
+.btn-primary, .btn-info{
+    background: #3f0a73 !important;
+    border-color: #3f0a73 !important;
+}
+
+#menu > li.active > a{
+    color: #ee05f2 !important;
+}
+
 html, body {
     height: 100%;
     margin: 0;
@@ -172,7 +189,7 @@ a:hover, a:focus {
     width: 235px;
     height: 100%;
     overflow: auto;
-    background-color: #242d37;
+    background-color: #111;
     position: absolute;
     top: 0px;
     left: -235px;
@@ -270,6 +287,86 @@ a:hover, a:focus {
     content: "\f105";
 }
 
+
+
+label[for="show_sidebar"]{
+    margin-bottom: 0 !important;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#column-left{
+    width: 53px;
+    transition: width .5s;
+}
+
+#content, #footer{
+    margin-left: 55px;
+    transition: margin-left .5s;
+}
+
+.menu_name{
+    visibility: hidden;
+    position: absolute;
+    transition: opacity 1s;
+    transition-delay: .6s;
+    opacity: 0;
+}
+
+#menu li a:after{
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 1s;
+    transition-delay: .6s;
+}
+
+#stats{
+    width: 0px;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 1s;
+    transition-delay: .6s;
+}
+
+#navigation{
+    width: 100%;
+    height: 40px;
+    padding: 0 !important;
+    position: relative;
+}
+
+#show_sidebar:checked ~ #column-left{
+    width: 235px;
+}
+
+#show_sidebar:checked ~ #column-left #menu li a:after{
+    visibility: visible;
+    opacity: 1;
+}
+
+#show_sidebar:checked ~ #column-left #stats{
+    width: unset;
+    opacity: 1;
+}
+
+#show_sidebar:checked ~ #column-left .menu_name{
+    opacity: 1;
+    visibility: visible;
+}
+
+#show_sidebar:checked ~ #column-left ~ #content{
+    margin-left: 235px;
+}
+
+
+
+
+
 /* 1st lvl */
 #menu > li {
     position: relative;
@@ -299,7 +396,7 @@ a:hover, a:focus {
 }
 
 #menu > li > ul {
-    background-color: #293141;
+    background-color: #181818;
 }
 
 /* 2nd lvl */
@@ -644,7 +741,7 @@ input[type="checkbox"]:checked::after, .checkbox input[type="checkbox"]:checked:
 #stats {
     border-radius: 2px;
     color: #808b9c;
-    background: #2e3a47;
+    background: rgba(0,0,0,.5);
     margin: 15px 20px;
     padding: 5px 0;
 }
@@ -954,4 +1051,35 @@ input[type="checkbox"]:checked::after, .checkbox input[type="checkbox"]:checked:
 
 .opencart-icon-cart-mini:before {
     content: "\e91c";
+}
+
+.icon_picker_wrapper{
+    min-height: 200px;
+    border: 1px solid #ddd;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    max-height: 250px;
+    overflow: auto;
+}
+
+.pickable{
+    width: calc(20% - 10px); 
+    height: 50px;
+    font-size: 24px;
+    display: flex;
+    margin: 5px;
+    box-shadow: 0 0 4px 4px #ccc;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(.9);
+    transition: .15s;
+    cursor: pointer;
+}
+
+.pickable:hover{
+    transform: scale(1);
 }
