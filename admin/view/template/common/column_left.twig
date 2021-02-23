@@ -35,15 +35,15 @@
         {% for children_1 in menu.children %}
         <li>
           {% if children_1.href %}
-            {% if menu_is_expanded == 'true' %}
+            {# {% if menu_is_expanded == 'true' %} #}
               <a href="{{ children_1.href }}">
                 {{ children_1.name }}
               </a>
-            {% else %}
-              <a href="#collapse{{ i }}-{{ j }}" data-toggle="collapse" class="parent collapsed">
-                {{ children_1.name }}
-              </a>
-            {% endif %}
+            {# {% else %} #}
+              {# <a href="#collapse{{ i }}-{{ j }}" data-toggle="collapse" class="parent collapsed"> #}
+                {# {{ children_1.name }} #}
+              {# </a> #}
+            {# {% endif %} #}
           {% else %}
             <a href="#collapse{{ i }}-{{ j }}" data-toggle="collapse" class="parent collapsed">
               {{ children_1.name }}
