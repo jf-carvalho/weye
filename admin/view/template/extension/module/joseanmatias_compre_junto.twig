@@ -1,0 +1,84 @@
+{{ header }}{{ column_left }}
+<div id="content">
+    <div class="page-header">
+        <div class="container-fluid">
+            <div class="pull-right">
+                <button type="submit" form="form-compre_junto" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+                <a href="{{ products }}" data-toggle="tooltip" title="{{ button_products }}" class="btn btn-primary"><i class="fa fa-exchange"></i> <span class="hidden-xs">{{ button_products }}</span></a>
+                <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+            <h1>{{ heading_title }}</h1>
+            <ul class="breadcrumb">
+                {% for breadcrumb in breadcrumbs %} 
+                    <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+                {% endfor %} 
+            </ul>
+        </div>
+    </div>
+    <div class="container-fluid">
+        {% if error_warning %} 
+            <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        {% endif %} 
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_edit }}</h3>
+            </div>
+            <div class="panel-body">
+                <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-compre_junto" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">{{ entry_status }}</label>
+                        <div class="col-md-9">
+                            <div class="btn-group" data-toggle="buttons">
+                                {% if module_joseanmatias_compre_junto_status %} 
+                                    <label class="btn btn-default active">
+                                        <input type="radio" name="module_joseanmatias_compre_junto_status" value="1" checked="checked" /> {{ text_enabled }}
+                                    </label>
+                                    <label class="btn btn-default">
+                                        <input type="radio" name="module_joseanmatias_compre_junto_status" value="0" /> {{ text_disabled }}
+                                    </label>
+                                {% else %}  
+                                    <label class="btn btn-default">
+                                        <input type="radio" name="module_joseanmatias_compre_junto_status" value="1" /> {{ text_enabled }}
+                                    </label>
+                                    <label class="btn btn-default active">
+                                        <input type="radio" name="module_joseanmatias_compre_junto_status" value="0" checked="checked" /> {{ text_disabled }}
+                                    </label>
+                                {% endif %} 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">{{ entry_image_thumb }}</label>
+                        <div class="col-md-9">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fa fa-arrows-h"></i></div>
+                                        <input type="text" name="module_joseanmatias_compre_junto_thumb_width" value="{{ module_joseanmatias_compre_junto_thumb_width }}" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fa fa-arrows-v"></i></div>
+                                        <input type="text" name="module_joseanmatias_compre_junto_thumb_height" value="{{ module_joseanmatias_compre_junto_thumb_height }}" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">{{ entry_box_height }}</label>
+                        <div class="col-md-9">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-arrows-v"></i></div>
+                                <input type="text" name="module_joseanmatias_compre_junto_box_height" value="{{ module_joseanmatias_compre_junto_box_height }}" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{ footer }}

@@ -54,7 +54,6 @@
             </div>
 
           {% endif %}
-
             <ul class="nav nav-tabs my-4">
               <li class="active mr-3">
                 <a href="#tab-description" data-toggle="tab" class="text-dark">
@@ -338,6 +337,13 @@
             </div>
           </div>
         </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+            {{ joseanmatias_compre_junto }}
+          </div>
+        </div>
+
         {% if products %}
         {# <h3>{{ text_related }}</h3> #}
         <div class="row"> {% set i = 0 %}
@@ -398,6 +404,7 @@
             {% endfor %}
           </div>
           {% endif %}
+
           {% if tags %}
           <p>{{ text_tags }}
           {% for i in 0..tags|length - 1 %}

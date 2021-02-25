@@ -1,0 +1,455 @@
+{% if products %}
+    <style type="text/css">
+        /** initial setup **/
+        .nano {
+          position : relative;
+          width    : 100%;
+          height   : {{ box_height }}px;
+          /*max-height: {{ box_height }}px;*/
+          overflow : hidden;
+        }
+        .nano > .nano-content {
+          position      : absolute;
+          overflow      : scroll;
+          overflow-x    : hidden;
+          top           : 0;
+          right         : 0;
+          bottom        : 0;
+          left          : 0;
+          padding: 10px;
+        }
+        .nano > .nano-content:focus {
+          outline: thin dotted;
+        }
+        .nano > .nano-content::-webkit-scrollbar {
+          display: none;
+        }
+        .has-scrollbar > .nano-content::-webkit-scrollbar {
+          display: block;
+        }
+        .nano > .nano-pane {
+          background : rgba(0,0,0,.25);
+          position   : absolute;
+          width      : 10px;
+          right      : 0;
+          top        : 0;
+          bottom     : 0;
+          visibility : hidden\9; /* Target only IE7 and IE8 with this hack */
+          opacity    : .01;
+          -webkit-transition    : .2s;
+          -moz-transition       : .2s;
+          -o-transition         : .2s;
+          transition            : .2s;
+          -moz-border-radius    : 5px;
+          -webkit-border-radius : 5px;
+          border-radius         : 5px;
+        }
+        .nano > .nano-pane > .nano-slider {
+          background: #444;
+          background: rgba(0,0,0,.5);
+          position              : relative;
+          margin                : 0 1px;
+          -moz-border-radius    : 3px;
+          -webkit-border-radius : 3px;
+          border-radius         : 3px;
+        }
+        .nano:hover > .nano-pane, .nano-pane.active, .nano-pane.flashed {
+          visibility : visible\9; /* Target only IE7 and IE8 with this hack */
+          opacity    : 0.99;
+        }
+        .joseanmatias_compre_junto{
+            padding-top:10px;
+            padding-bottom:10px;
+        }
+        .joseanmatias_compre_junto .plus-container{
+            text-align:center;
+        }
+        .joseanmatias_compre_junto .fa-plus{
+            display:block;
+            color:#f00;
+            font-size:18px;
+            vertical-align:middle;
+            /*margin-top: 40px;*/
+        }
+        .joseanmatias_compre_junto .compre_junto_checkbox_container {
+            margin-top:30px;
+        }
+        @media (max-width: 768px) {
+            .joseanmatias_compre_junto .fa-plus {
+                margin-top:20px;
+                margin-bottom:20px;
+            }
+        }
+
+        .product_wrapper{
+            border: 3px solid transparent;
+            border-radius: 5px;
+            box-shadow: 0 10px 20px #bbb
+        }
+
+        .product_wrapper.border{
+            border: 3px solid #3f0a73 !important;
+        }
+
+        .compre_junto_checkbox:checked ~ .product_wrapper{
+            border-color: #3f0a73;
+        }
+    </style>
+    <div id="compre_junto" class="panel panel-default">
+        <div class="panel-heading"><strong>Compre junto</strong></div>
+        <div class="panel-body">
+            <div class="joseanmatias_compre_junto row">
+                <div class="col-sm-3 col-xs-12 product_wrapper border d-flex align-items-center">
+                 
+                    <div class="text-center">
+                        <img src="{{ product_current.image }}" alt="{{ product_current.name }}" class="img-responsive" />
+
+                        <div>
+                            <strong>{{ product_current.name }}</strong>
+                        </div>
+
+                        <div>
+                        {% if not product_current.special %} 
+                            {{ product_current.price }}
+                        {% else %}  
+                            <div class="price-old">de: {{ product_current.price }}</span><br> <span class="price-new">por: {{ product_current.special }}</div>
+                        {% endif %}
+                        </div> 
+
+                        {% if product_current.options %} 
+                            <hr>
+                            {% for option in product_current.options %}
+                                {% if option.type == 'select' %}
+                                <div class="form-group{% if option.required %} required{% endif %}">
+                                  <label class="control-label" for="cj-input-option{{ option.product_option_id }}">{{ option.name }}</label>
+                                  <select name="current_option[{{ option.product_option_id }}]" id="cj-input-option{{ option.product_option_id }}" class="form-control">
+                                    <option value="">{{ text_select }}</option>
+                                    {% for option_value in option.product_option_value %}
+                                    <option value="{{ option_value.product_option_value_id }}">{{ option_value.name }}
+                                    {% if option_value.price %}
+                                    ({{ option_value.price_prefix }}{{ option_value.price }})
+                                    {% endif %} </option>
+                                    {% endfor %}
+                                  </select>
+                                </div>
+                                {% endif %} 
+                                {% if option.type  ==  'radio' %} 
+                                    <div class="form-group{% if option.required %} required{% endif %}">
+                                        <label class="control-label">{{ option.name }}</label>
+                                        <div id="cj-input-option{{ option.product_option_id }}">
+                                            {% for option_value in option.product_option_value %} 
+                                                <div class="radio">
+                                                    <label>
+                                                        <input type="radio" name="current_option[{{ option.product_option_id }}]" value="{{ option_value.product_option_value_id }}" />
+                                                        {{ option_value.name }}
+                                                        {% if option_value.price %} 
+                                                            ({{ option_value.price_prefix }}{{ option_value.price }})
+                                                        {% endif %} 
+                                                    </label>
+                                                </div>
+                                            {% endfor %} 
+                                        </div>
+                                    </div>
+                                {% endif %} 
+                                {% if option.type  ==  'checkbox' %} 
+                                    <div class="form-group{% if option.required %} required{% endif %}">
+                                        <label class="control-label">{{ option.name }}</label>
+                                        <div id="cj-input-option{{ option.product_option_id }}">
+                                            {% for option_value in option.product_option_value %} 
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" name="current_option[{{ option.product_option_id }}][]" value="{{ option_value.product_option_value_id }}" />
+                                                        {{ option_value.name }}
+                                                        {% if option_value.price %} 
+                                                            ({{ option_value.price_prefix }}{{ option_value.price }})
+                                                        {% endif %} 
+                                                    </label>
+                                                </div>
+                                            {% endfor %} 
+                                        </div>
+                                    </div>
+                                {% endif %} 
+                                {% if option.type  ==  'image' %} 
+                                    <div class="form-group{% if option.required %} required{% endif %}">
+                                        <label class="control-label">{{ option.name }}</label>
+                                        <div id="cj-input-option{{ option.product_option_id }}">
+                                            {% for option_value in option.product_option_value %} 
+                                                <div class="radio">
+                                                    <label>
+                                                        <input type="radio" name="current_option[{{ option.product_option_id }}]" value="{{ option_value.product_option_value_id }}" />
+                                                        <img src="{{ option_value.image }}" alt="{% if option_value.name ~ option_value.price %}{{ ' ' ~ option_value.price_prefix ~ option_value.price }}{% endif %}" class="img-thumbnail" /> {{ option_value.name }}
+                                                        {% if option_value.price %} 
+                                                            ({{ option_value.price_prefix }}{{ option_value.price }})
+                                                        {% endif %} 
+                                                    </label>
+                                                </div>
+                                            {% endfor %} 
+                                        </div>
+                                    </div>
+                                {% endif %}                               
+                         {% endfor %}
+                    {% endif %}
+                        {% if product_current.recurrings %} 
+                            <hr>
+                            
+                            <strong>{{ text_payment_recurring }}</strong><br>
+
+                            <div class="form-group required">
+                              <select name="recurring_id" class="form-control">
+                                <option value="">{{ text_select }}</option>
+                                {% for recurring in product_current %} 
+                                <option value="{{ recurring.recurring_id }}">{{ recurring.name }}</option>
+                                {% endfor %} 
+                              </select>
+                              <div class="help-block" id="recurring-description"></div>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                </div>
+                <div class="col-sm-1 col-xs-12 d-flex align-items-center justify-content-center">
+                    <i class="fa fa-plus text-purple pl-3"></i>
+                </div>
+                <div class="col-sm-8 col-xs-12">
+                    <div>
+                    <div class="row">
+                        {% for product in products %} 
+                            <div class="col-sm-12 col-md-4 mb-3">
+                            <input type="checkbox" name="compre_junto[]" class="compre_junto_checkbox d-none" value="{{ product.compre_junto_id }}" id="{{ product.name }}" />
+
+                            <div class="product_wrapper">
+                            <label class="text-center" for="{{ product.name }}">
+                              {# <label class="compre_junto_checkbox_container" for="compre_junto_{{ product.compre_junto_id }}"> #}
+                                <div>
+                                    {# <a href="{{ product.href }}"> #}
+                                        <img src="{{ product.thumb }}" alt="{{ product.name }}" class="img-fluid" />
+                                    {# </a> #}
+                                </div>
+                                <div class="">
+                                    <div class="my-2">
+                                        <strong>{{ product.name }}</strong>
+                                    </div>
+                                    {% if not product.special %} 
+                                        <small>{{ product.price }}</small>
+                                    {% else %}  
+                                        <div>
+                                            <small>
+                                                <span class="text-secondary" style="text-decoration: line-through;">de {{ product.price }}</span>
+                                            </small>
+                                                <span class="price-new">por {{ product.special }}</span>
+                                        </div>
+                                    {% endif %} 
+                                    <div class="aggregate_options mt-3">
+                                        {% if product.product_options %} 
+                                            <hr>
+                                            {% for product_option in product.product_options %} 
+                                                {% if product_option.type  ==  'select' %} 
+                                                    <div class="form-group{% if product_option.required %} required{% endif %}">
+                                                        <label class="control-label" for="cj-input-aggregate-option{{ product_option.product_option_id }}">{{ product_option.name }}</label>
+                                                        <select name="aggregate_option[{{ product_option.product_option_id }}]" id="cj-input-aggregate-option{{ product_option.product_option_id }}" class="form-control">
+                                                            <option value="">{{ text_select }}</option>
+                                                            {% for product_option_value in product_option.product_option_value %} 
+                                                                <option value="{{ product_option_value.product_option_value_id }}">{{ product_option_value.name }}
+                                                                    {% if product_option_value.price %} 
+                                                                        ({{ product_option_value.price_prefix }}{{ product_option_value.price }})
+                                                                    {% endif %} 
+                                                                </option>
+                                                            {% endfor %} 
+                                                        </select>
+                                                    </div>
+                                                {% endif %} 
+                                                {% if product_option.type  ==  'radio' %} 
+                                                    <div class="form-group{% if product_option.required %} required{% endif %}">
+                                                        <label class="control-label">{{ product_option.name }}</label>
+                                                        <div id="cj-input-aggregate-option{{ product_option.product_option_id }}">
+                                                            {% for product_option_value in product_option.product_option_value %} 
+                                                                <div class="radio">
+                                                                    <label>
+                                                                        <input type="radio" name="aggregate_option[{{ product_option.product_option_id }}]" value="{{ product_option_value.product_option_value_id }}" />
+                                                                        {{ product_option_value.name }}
+                                                                        {% if product_option_value.price %} 
+                                                                            ({{ product_option_value.price_prefix }}{{ product_option_value.price }})
+                                                                        {% endif %} 
+                                                                    </label>
+                                                                </div>
+                                                            {% endfor %} 
+                                                        </div>
+                                                    </div>
+                                                {% endif %} 
+                                                {% if product_option.type  ==  'checkbox' %} 
+                                                    <div class="form-group{% if product_option.required %} required{% endif %}">
+                                                        <label class="control-label">{{ product_option.name }}</label>
+                                                        <div id="cj-input-aggregate-option{{ product_option.product_option_id }}">
+                                                            {% for product_option_value in product_option.product_option_value %} 
+                                                                <div class="checkbox">
+                                                                    <label>
+                                                                        <input type="checkbox" name="aggregate_option[{{ product_option.product_option_id }}][]" value="{{ product_option_value.product_option_value_id }}" />
+                                                                        {{ product_option_value.name }}
+                                                                        {% if product_option_value.price %} 
+                                                                            ({{ product_option_value.price_prefix }}{{ product_option_value.price }})
+                                                                        {% endif %} 
+                                                                    </label>
+                                                                </div>
+                                                            {% endfor %} 
+                                                        </div>
+                                                    </div>
+                                                {% endif %} 
+                                                {% if product_option.type  ==  'image' %} 
+                                                    <div class="form-group{% if product_option.required %} required{% endif %}">
+                                                        <label class="control-label">{{ product_option.name }}</label>
+                                                        <div id="cj-input-aggregate-option{{ product_option.product_option_id }}">
+                                                            {% for product_option_value in product_option.product_option_value %} 
+                                                                <div class="radio">
+                                                                    <label>
+                                                                        <input type="radio" name="aggregate_option[{{ product_option.product_option_id }}]" value="{{ product_option_value.product_option_value_id }}" />
+                                                                        <img src="{{ product_option_value.image }}" alt="{% if product_option_value.name ~ product_option_value.price %}{{ ' ' ~ product_option_value.price_prefix ~ product_option_value.price }}{% endif %}" class="img-thumbnail" /> {{ product_option_value.name }}
+                                                                        {% if product_option_value.price %} 
+                                                                            ({{ product_option_value.price_prefix }}{{ product_option_value.price }})
+                                                                        {% endif %} 
+                                                                    </label>
+                                                                </div>
+                                                            {% endfor %} 
+                                                        </div>
+                                                    </div>
+                                                {% endif %} 
+                                            {% endfor %} 
+                                        {% endif %} 
+                                    </div>
+
+                                    <div class="label label-default" style="padding:5px 20px;font-size:13px;border-top-left-radius: 15px;border-bottom-right-radius: 30px;">
+                                        Compre junto com + {% if product.special %}{{ product.special }}{% else %}{{ product.price }}{% endif %} 
+                                    </div>
+                                </div>
+                            </label>
+                            </div>
+                            </div>
+                         {% endfor %} 
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer compre-junto-result mt-5">
+            <div class="row">
+                <div class="col-sm-6">
+                    <span class="products-names">&nbsp;</span>
+                </div>
+                <div class="col-sm-3">
+                    <div class="box-content">
+                        <span class="price-new">&nbsp;</span>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <button onclick="location='{{ button_add_to_cart }}'" id="compre-junto-button" class="btn btn-primary btn-block btn-lg" disabled="disabled" title="Selecione os produtos para o Compre Junto">Compre junto</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="catalog/view/theme/default/javascript/jquery.nanoscroller.min.js"></script>
+    <script type="text/javascript"><!--
+        $(".nano").nanoScroller();
+        --></script>
+    <script type="text/javascript">
+        $(function(){
+            compre_junto_cart = {
+                add: function(){
+                    $.ajax({
+                        url: 'index.php?route=extension/module/joseanmatias_compre_junto/virtual_cart_add&product_id={{ product_current.product_id }}',
+                        type: 'post',
+                        data: $('#compre_junto input[type=\'text\'], #compre_junto input[type=\'hidden\'], #compre_junto input[type=\'radio\']:checked, #compre_junto input[type=\'checkbox\']:checked, #compre_junto select, #compre_junto textarea'),
+                        dataType: 'json',
+                        success: function(json) {
+                            $('.alert, .text-danger').remove();
+                            $('.form-group').removeClass('has-error');
+
+                            if (json['error']) {
+                                if (json['error']['option']) {
+                                    for (i in json['error']['option']) {
+                                        var element = $('#compre_junto #cj-input-option' + i.replace('_', '-'));
+
+                                        if (element.parent().hasClass('input-group')) {
+                                            element.parent().after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+                                        } else {
+                                            element.after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+                                        }
+                                    }
+                                }
+                                if (json['error']['aggregate_option']) {
+                                    for (i in json['error']['aggregate_option']) {
+                                        var element = $('#compre_junto #cj-input-aggregate-option' + i.replace('_', '-'));
+
+                                        if (element.parent().hasClass('input-group')) {
+                                            element.parent().after('<div class="text-danger">' + json['error']['aggregate_option'][i] + '</div>');
+                                        } else {
+                                            element.after('<div class="text-danger">' + json['error']['aggregate_option'][i] + '</div>');
+                                        }
+                                    }
+                                }
+
+                                if (json['error']['recurring']) {
+                                    $('#compre_junto select[name=\'recurring_id\']').after('<div class="text-danger">' + json['error']['recurring'] + '</div>');
+                                }
+
+                                // Highlight any found errors
+                                $('.text-danger').parent().addClass('has-error');
+                                if (json['error']['option']) {
+                                    $('html, body').animate({ scrollTop: $("#compre_junto").offset().top }, 'slow');
+                                }
+                            } else {
+                                compre_junto_cart.load();
+                            }
+                        }
+                    });
+                },
+                load: function(){
+                    $.ajax({
+                        url: 'index.php?route=extension/module/joseanmatias_compre_junto/virtual_cart&product_id={{ product_current.product_id }}',
+                        type: 'get',
+                        dataType: 'json',
+                        beforeSend: function() {
+                            $('#compre_junto .compre-junto-result .products-names,#compre_junto .compre-junto-result .price-new').fadeOut(300);
+                        },
+                        success: function(json) {
+                            if (json.names) {
+                                $('#compre-junto-button').attr('disabled', false);
+                            } else {
+                                $('#compre-junto-button').attr('disabled', true);
+                            }
+
+                            const names = json.names.split(' + ')
+
+                            $('#compre_junto .compre-junto-result .products-names').text('')
+                            if(names[0] != ""){
+                                names.forEach(name => {
+                                    if(document.getElementById(name)){
+                                        document.getElementById(name.trimStart()).checked = true                                    
+                                    }
+                                    
+                                    $('#compre_junto .compre-junto-result .products-names').append(`<div>${name} + </div>`);
+                                })
+                            }
+
+                            $('#compre_junto .compre-junto-result .price-new').text(json.price);
+                            $('#compre_junto .compre-junto-result .products-names,#compre_junto .compre-junto-result .price-new').fadeIn(300);
+                        }
+                    });
+                },
+                clear: function(){
+                    $.ajax({
+                        url: 'index.php?route=extension/module/joseanmatias_compre_junto/virtual_cart_clear',
+                        type: 'get',
+                        dataType: 'html',
+                        success: function(html) { }
+                    });
+                }
+            }
+
+            $('#compre_junto input,#compre_junto select').change(function(){
+                compre_junto_cart.add();
+            });
+            
+            compre_junto_cart.clear();
+            compre_junto_cart.load();
+        });
+    </script>
+ {% endif %} 

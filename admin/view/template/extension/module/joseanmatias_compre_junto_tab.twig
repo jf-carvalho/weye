@@ -1,0 +1,143 @@
+<div class="tab-pane" id="tab-compre_junto">
+    <table id="compre_junto" class="table table-condensed">
+        <thead>
+            <tr>
+                <th class="text-left">{{ entry_name }}</th>
+                <th class="text-left">{{ entry_price }}</th>
+                <th class="text-left">{{ entry_date_start }}</th>
+                <th class="text-left">{{ entry_date_end }}</th>
+                <th class="text-left">{{ entry_sort_order }}</th>
+                <th></th>
+            </tr>
+        </thead>
+        {% set row = 0 %} 
+        {% for product in products %} 
+            <tbody id="row{{ row }}">
+                <tr>
+                    <td class="text-left">
+                        <input type="text" class="filter_compre_junto_name form-control" name="joseanmatias_compre_junto[{{ row }}][compre_junto_name]" value="{{ product.compre_junto_name }}" index="{{ row }}" />
+                        <input type="hidden" name="joseanmatias_compre_junto[{{ row }}][compre_junto_id]" value="{{ product.compre_junto_id }}" />
+                    </td>
+                    <td class="text-left"><input type="text" name="joseanmatias_compre_junto[{{ row }}][price]" value="{{ product.price }}" class="form-control" /></td>
+                    <td class="text-left" style="width: 20%;"><div class="input-group date">
+                            <input type="text" name="joseanmatias_compre_junto[{{ row }}][date_start]" value="{% if product.date_start is defined %}{{ product.date_start }}{% endif %}" placeholder="{{ entry_date_start }}" data-date-format="YYYY-MM-DD" class="form-control" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                            </span></div></td>
+                    <td class="text-left" style="width: 20%;"><div class="input-group date">
+                            <input type="text" name="joseanmatias_compre_junto[{{ row }}][date_end]" value="{% if product.date_end is defined %}{{ product.date_end }}{% endif %}" placeholder="{{ entry_date_end }}" data-date-format="YYYY-MM-DD" class="form-control" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                            </span></div></td>
+                    <td class="text-left"><input type="text" name="joseanmatias_compre_junto[{{ row }}][sort_order]" value="{{ product.sort_order }}" class="form-control" /></td>
+                    <td class="text-left"><button type="button" onclick="$('#row{{ row }}').remove();" data-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
+                </tr>
+            </tbody>
+            {% set row = row + 1 %} 
+        {% endfor %} 
+        <tfoot>
+            <tr>
+                <td colspan="5"></td>
+                <td class="left"><button type="button" onclick="addCompreJunto();" data-toggle="tooltip" title="{{ button_add }}" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+<script type="text/javascript"><!--
+    $('#compre_junto .filter_compre_junto_name').autocomplete({
+        delay: 500,
+        'source': function(request, response) {
+            $.ajax({
+                url: 'index.php?route=catalog/product/autocomplete&user_token={{ user_token }}&filter_name=' +  encodeURIComponent(request),
+                dataType: 'json',
+                success: function(json) {
+                    response($.map(json, function(item) {
+                        return {
+                            label: item['name'],
+                            value: item['product_id']
+                        };
+                    }));
+                }
+            });
+        },
+        'select': function(item) {
+            var index = this.getAttribute('index');
+            if(item['value'] == '{{ product_id }}') {
+               $('#content > .container-fluid').prepend('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i>{{ error_product_main }}</div>');
+            } else {
+                $('#compre_junto .filter_compre_junto_name').eq(index).val(item['label']);
+                $('#compre_junto .filter_compre_junto_name').eq(index).siblings('input').val(item['value']);
+            }
+
+            return false;
+        },
+        focus: function(item) {
+            return false;
+        }
+    });
+
+    var row = '{{ row }}';
+
+    function addCompreJunto() {
+
+        var html;
+        html += '<tbody id="row' + row + '">';
+        html += '<tr>';
+        html += '<td class="left"><input type="text" class="filter_compre_junto_name form-control" name="joseanmatias_compre_junto[' + row + '][compre_junto_name]" value="" index="'+ row +'" /><input type="hidden" name="joseanmatias_compre_junto[' + row + '][compre_junto_id]" value="" /></td>';
+        html += '<td class="left"><input type="text" name="joseanmatias_compre_junto[' + row + '][price]" value="" class="form-control" /></td>';
+        html += '<td class="text-left" style="width: 20%;"><div class="input-group date"><input type="text" name="joseanmatias_compre_junto[' + row + '][date_start]" value="" placeholder="{{ entry_date_start }}" data-date-format="YYYY-MM-DD" class="form-control" /><span class="input-group-btn"><button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button></span></div></td>';
+        html += '<td class="text-left" style="width: 20%;"><div class="input-group date"><input type="text" name="joseanmatias_compre_junto[' + row + '][date_end]" value="" placeholder="{{ entry_date_end }}" data-date-format="YYYY-MM-DD" class="form-control" /><span class="input-group-btn"><button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button></span></div></td>';
+        html += '<td class="left" style="width: 20%;"><input type="text" name="joseanmatias_compre_junto[' + row + '][sort_order]" value="" class="form-control" /></td>';
+        html += '<td class="left"><button type="button" onclick="$(\'#row' + row + '\').remove();" data-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+        html += '</tr>';
+        html += '</tbody>';
+
+        $('#compre_junto tfoot').before(html);
+
+        $('.date').datetimepicker({
+            language: document.cookie.match(new RegExp('language=([^;]+)'))[1],
+            pickTime: false
+        });
+
+        $('#compre_junto .filter_compre_junto_name').autocomplete({
+            delay: 500,
+            'source': function(request, response) {
+                $.ajax({
+                    url: 'index.php?route=catalog/product/autocomplete&user_token={{ user_token }}&filter_name=' +  encodeURIComponent(request),
+                    dataType: 'json',
+                    success: function(json) {
+                        response($.map(json, function(item) {
+                            return {
+                                label: item['name'],
+                                value: item['product_id']
+                            };
+                        }));
+                    }
+                });
+            },
+            'select': function(item) {
+                var index = this.getAttribute('index');
+                var input_filter = this;
+                var container = input_filter.parentNode.parentNode.parentNode;
+                if(item['value'] == '{{ product_id }}') {
+                        $('#content > .container-fluid').prepend('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i>{{ error_product_main }}</div>');
+                    } else {
+                        input_filter.value = item['label'];
+                        input_filter.nextSibling.nextSibling.value = item['value'];
+                    }
+
+                return false;
+            },
+            focus: function(item) {
+                return false;
+            }
+        });
+
+        row++;
+    }
+
+    $('.date').datetimepicker({
+        language: document.cookie.match(new RegExp('language=([^;]+)'))[1],
+	pickTime: false
+    });
+    //--></script>
