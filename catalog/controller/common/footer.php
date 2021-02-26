@@ -78,11 +78,29 @@ class ControllerCommonFooter extends Controller {
 		}
 
 		$data['scripts'] = $this->document->getScripts('footer');
+
+            $data['funcionamento'] = $this->config->get('config_open');
+            $data['telefone'] = $this->config->get('config_telephone');
+            $data['whatsapp'] = $this->config->get('config_fax');
+            $data['email'] = $this->config->get('config_email');
+            
 		$data['register'] = $this->url->link('account/register', '', true);
 		$data['logged'] = $this->customer->isLogged();
 		$data['in_newsletter'] = $data['logged'] ? $this->customer->getNewsletter() : false;
 		$data['action_newsletter'] = $this->url->link('account/newsletter', '', true);
 
+
+            $data['facebook'] = $this->config->get('config_facebook');
+            $data['instagram'] = $this->config->get('config_instagram');
+            $data['youtube'] = $this->config->get('config_youtube');
+            $data['blog'] = $this->config->get('config_blog');
+            $data['twitter'] = $this->config->get('config_twitter');
+
+            $data['facebook_user']  = strpos($this->config->get('config_facebook'), '/')  !== false ?  explode('/', $this->config->get('config_facebook'))[count(explode('/', $this->config->get('config_facebook'))) - 1] : $this->config->get('config_facebook');
+            $data['instagram_user'] = strpos($this->config->get('config_instagram'), '/') !== false ?  explode('/', $this->config->get('config_instagram'))[count(explode('/', $this->config->get('config_instagram'))) - 1] : $this->config->get('config_instagram');
+            $data['youtube_user']   = strpos($this->config->get('config_youtube'), '/')   !== false ?  explode('/', $this->config->get('config_youtube'))[count(explode('/', $this->config->get('config_youtube'))) - 1] : $this->config->get('config_youtube');
+            $data['twitter_user']   = strpos($this->config->get('config_twitter'), '/')   !== false ?  explode('/', $this->config->get('config_twitter'))[count(explode('/', $this->config->get('config_twitter'))) - 1] : $this->config->get('config_twitter');
+            
 		return $this->load->view('common/footer', $data);
 	}
 }

@@ -33,6 +33,7 @@
           <ul class="nav nav-tabs">
             <li class="active"><a href="#tab-general" data-toggle="tab">{{ tab_general }}</a></li>
             <li><a href="#tab-store" data-toggle="tab">{{ tab_store }}</a></li>
+<li><a href="#tab-socials" data-toggle="tab">Redes sociais</a></li>
             <li><a href="#tab-local" data-toggle="tab">{{ tab_local }}</a></li>
             <li><a href="#tab-option" data-toggle="tab">{{ tab_option }}</a></li>
             <li><a href="#tab-image" data-toggle="tab">{{ tab_image }}</a></li>
@@ -169,6 +170,12 @@
                   <textarea name="config_comment" rows="5" placeholder="{{ entry_comment }}" id="input-comment" class="form-control">{{ config_comment }}</textarea>
                 </div>
               </div>
+               <div class="form-group">
+                 <label class="col-sm-2 control-label" for="input-topper"><span data-toggle="tooltip" data-container="#tab-general" title="O texto que será exibido em cima do cabeçalho">Mensagem do topo</span></label>
+                 <div class="col-sm-10">
+                   <textarea name="config_topper" rows="5" placeholder="{{ entry_topper }}" id="input-topper" class="form-control" data-toggle="summernote" data-lang="{{ summernote }}">{{ config_topper }}</textarea>
+                 </div>
+               </div>
               {% if locations %}
               <div class="form-group">
                 <label class="col-sm-2 control-label"><span data-toggle="tooltip" data-container="#tab-general" title="{{ help_location }}">{{ entry_location }}</span></label>
@@ -188,6 +195,56 @@
               </div>
               {% endif %}
             </div>
+
+                <div class="tab-pane" id="tab-socials">
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="facebook">
+                      <i class="fab fa-facebook"></i> Facebook
+                    </label>
+                    <div class="col-sm-10">
+                      <input type="text" name="config_facebook" id="facebook" class="form-control" value="{{ config_facebook }}" placeholder="ex.: https://facebook.com/sualoja">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="instagram">
+                      <i class="fab fa-instagram"></i> Instagram
+                    </label>
+                    <div class="col-sm-10">
+                      <input type="text" name="config_instagram" id="instagram" class="form-control" value="{{ config_instagram }}" placeholder="ex.: https://instagram.com/sualoja">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="youtube">
+                      <i class="fab fa-youtube"></i> YouTube
+                    </label>
+                    <div class="col-sm-10">
+                      <input type="text" name="config_youtube" id="youtube" class="form-control" value="{{ config_youtube }}" placeholder="ex.: https://youtube.com/sualoja">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="blog">
+                      <i class="fas fa-blog"></i> Blog
+                    </label>
+                    <div class="col-sm-10">
+                      <input type="text" name="config_blog" id="blog" class="form-control" value="{{ config_blog }}" placeholder="ex.: https://sualoja.com.br">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="twitter">
+                      <i class="fab fa-twitter"></i> Twitter
+                    </label>
+                    <div class="col-sm-10">
+                      <input type="text" name="config_twitter" id="twitter" class="form-control" value="{{ config_twitter }}" placeholder="ex.: https://twitter.com/sualoja">
+                    </div>
+                  </div>
+
+                </div>
+            
             <div class="tab-pane" id="tab-local">
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-country">{{ entry_country }}</label>
@@ -1357,6 +1414,10 @@
       </div>
     </div>
   </div>
+  <script type="text/javascript" src="view/javascript/summernote/summernote.js"></script>
+  <link href="view/javascript/summernote/summernote.css" rel="stylesheet"/>
+  <script type="text/javascript" src="view/javascript/summernote/summernote-image-attributes.js"></script>
+  <script type="text/javascript" src="view/javascript/summernote/opencart.js"></script>
 <script type="text/javascript"><!--
 $('select[name=\'config_theme\']').on('change', function() {
     $.ajax({

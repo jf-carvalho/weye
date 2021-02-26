@@ -71,6 +71,7 @@ class ControllerCommonHeader extends Controller {
 		$data['checkout'] = $this->url->link('checkout/checkout', '', true);
 		$data['contact'] = $this->url->link('information/contact');
 		$data['telephone'] = $this->config->get('config_telephone');
+		$data['topper'] = str_replace('<p', '<p class="mb-0"', html_entity_decode($this->config->get('config_topper'), ENT_QUOTES, 'UTF-8'));
 
 		$data['language'] = $this->load->controller('common/language');
 		$data['currency'] = $this->load->controller('common/currency');

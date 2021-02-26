@@ -74,6 +74,14 @@ body > div:not(:first-of-type):not(#common-home):not(.fixed) {
 .vertical-middle {
   vertical-align: middle !important; }
 
+.image-gray {
+  filter: gray;
+  /* IE6-9 */
+  -webkit-filter: grayscale(1);
+  /* Google Chrome, Safari 6+ & Opera 15+ */
+  filter: grayscale(1);
+  /* Microsoft Edge and Firefox 35+ */ }
+
 .btn-primary {
   background: #3f0a73 !important;
   border-color: #3f0a73 !important; }
@@ -495,5 +503,13 @@ footer #disclaimer {
     border-width: 3px !important;
     border-color: #3f0a73 !important;
     font-weight: 900; }
+
+.radio_option {
+  box-shadow: 0 10px 15px #bbb;
+  border-radius: 5px;
+  border: 2px solid transparent; }
+
+.radio_option_input:checked ~ .radio_option {
+  border-color: #3f0a73; }
 
 /*# sourceMappingURL=stylesheet.css.map */

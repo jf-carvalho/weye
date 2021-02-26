@@ -561,6 +561,12 @@ class ControllerCatalogProduct extends Controller {
 	}
 
 	protected function getForm() {
+
+                      $data['tab_compre_junto'] = '';
+                      if($this->config->get('module_joseanmatias_compre_junto_status')) {
+                        $data['tab_compre_junto'] = $this->language->get('tab_compre_junto');
+                      }
+                    
 		$data['text_form'] = !isset($this->request->get['product_id']) ? $this->language->get('text_add') : $this->language->get('text_edit');
 
 		if (isset($this->error['warning'])) {
@@ -1045,6 +1051,8 @@ class ControllerCatalogProduct extends Controller {
 
 		$data['product_options'] = array();
 
+		$this->load->model('tool/image');
+
 		foreach ($product_options as $product_option) {
 			$product_option_value_data = array();
 
@@ -1061,7 +1069,9 @@ class ControllerCatalogProduct extends Controller {
 						'points'                  => $product_option_value['points'],
 						'points_prefix'           => $product_option_value['points_prefix'],
 						'weight'                  => $product_option_value['weight'],
-						'weight_prefix'           => $product_option_value['weight_prefix']
+						'weight_prefix'           => $product_option_value['weight_prefix'],
+						'image'           		  => $this->model_tool_image->resize($product_option_value['image'], 100, 100),
+						'image_string'            => $product_option_value['image'],
 					);
 				}
 			}
@@ -1140,8 +1150,6 @@ class ControllerCatalogProduct extends Controller {
 		} else {
 			$data['image'] = '';
 		}
-
-		$this->load->model('tool/image');
 
 		if (isset($this->request->post['image']) && is_file(DIR_IMAGE . $this->request->post['image'])) {
 			$data['thumb'] = $this->model_tool_image->resize($this->request->post['image'], 100, 100);
@@ -1261,6 +1269,7 @@ class ControllerCatalogProduct extends Controller {
 
 		$data['layouts'] = $this->model_design_layout->getLayouts();
 		
+$data['module_joseanmatias_compre_junto_tab'] = $this->load->controller('extension/module/joseanmatias_compre_junto/product_tab');
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
